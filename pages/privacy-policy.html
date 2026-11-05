@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy · AltGenie</title>
+  <link rel="stylesheet" href="../../styles/agn-base.css" />
+</head>
+<body class="agn-legal">
+  <main class="agn-legal__container">
+    <h1>Privacy Policy. AltGenie.</h1>
+    <p class="agn-legal__updated">Last updated: 2026-07-21</p>
+
+    <section>
+      <h2>Summary</h2>
+      <p>
+        AltGenie runs entirely on your device. It does not collect, transmit,
+        or sell personal data. The extension reads images on the web pages you
+        visit only when you explicitly right-click an image to request alt
+        text, or when you opt in to the passive auto-audit badge. All
+        generation happens via Chrome's built-in on-device Prompt API
+        (LanguageModel) — the image bytes never leave the browser process.
+        All settings stay on this device in Chrome extension storage.
+      </p>
+    </section>
+
+    <section>
+      <h2>Permissions and why each one is required</h2>
+      <ul>
+        <li>
+          <code>contextMenus</code>. Registers the "Generate alt text (AltGenie)"
+          item on <code>contexts: ['image']</code>. Your right-click is the
+          explicit gesture that authorizes the single-image processing flow.
+        </li>
+        <li>
+          <code>activeTab</code>. Granted on user gesture (right-click, badge
+          click, or popup toggle); authorizes <code>chrome.scripting.executeScript</code>
+          for the page audit and the write-alt call. Does NOT require
+          <code>host_permissions</code>.
+        </li>
+        <li>
+          <code>scripting</code>. Enables <code>chrome.scripting.executeScript</code>
+          for (a) the audit pass that walks <code>document.images</code> and
+          (b) the DOM write that sets <code>img.alt</code> on the matching
+          element. No static content scripts.
+        </li>
+        <li>
+          <code>sidePanel</code>. Opens the side panel where the
+          <code>LanguageModel</code> runs. The Chrome Prompt API is unavailable
+          in the service worker per Chrome's documented API surface.
+        </li>
+        <li>
+          <code>storage</code>. Persists user preferences (audit toggle, badge
+          toggle, save-history toggle, prompt templates). No image bytes or
+          generated text stored by default.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What we never request</h2>
+      <p>
+        AltGenie never requests <code>host_permissions</code>,
+        <code>tabs</code>, <code>webRequest</code>,
+        <code>declarativeNetRequest</code>, <code>notifications</code>,
+        <code>clipboardWrite</code> (not needed — <code>navigator.clipboard</code>
+        works without it in extension context), <code>identity</code>,
+        <code>&lt;all_urls&gt;</code> (in matches),
+        <code>optional_host_permissions</code>, or <code>alarms</code>.
+      </p>
+    </section>
+
+    <section>
+      <h2>What we read</h2>
+      <p>
+        When you right-click an image, AltGenie reads the image URL and — for
+        same-origin or CORS-friendly URLs — fetches the image bytes in the
+        side panel context to construct a <code>LanguageModel.ImagePart</code>.
+        For cross-origin images without CORS, AltGenie shows an honest
+        "Cannot read cross-origin image without CORS" message and offers the
+        Copy-URL fallback. No <code>host_permissions</code> is ever requested
+        to bypass CORS.
+      </p>
+      <p>
+        When you opt in to the passive auto-audit badge, the audit walker
+        reads <code>document.images</code> on the current tab to count those
+        with missing or empty <code>alt</code>. The walker returns a
+        serializable summary (src, dimensions, viewport visibility). It never
+        reads or transmits image bytes; it never writes to the DOM beyond
+        stamping a <code>data-altgenie-id</code> attribute for later
+        write-back.
+      </p>
+    </section>
+
+    <section>
+      <h2>What we store</h2>
+      <ul>
+        <li><code>storage.local</code>. Your settings (audit toggle, badge toggle, save-history toggle, prompt templates), license state (only if you have Pro), and a rolling 100-event funnel log kept only on this device, never sent anywhere.</li>
+        <li><code>storage.session</code>. The currently-pending image URL between context-menu click and side-panel processing. Cleared when the browser restarts.</li>
+      </ul>
+      <p>
+        AltGenie does NOT persist image bytes or generated alt text by default
+        (per the SPEC privacy contract). The optional save-history feature
+        (opt-in, Pro tier) stores the last 100 generated text items locally
+        — only the text, never the image bytes.
+      </p>
+    </section>
+
+    <section>
+      <h2>What we transmit</h2>
+      <p>
+        <strong>Nothing, by default.</strong> The extension makes zero network
+        requests during normal alt-text generation. The only network request
+        the extension ever makes is a POST to the Zovo license Edge Function
+        when you enter a license key in Options or in the popup. The request
+        body is your license key and the extension's product ID. No page
+        content, no image bytes, no browsing history, and no profile data is
+        ever sent. If you never enter a license key, the extension never
+        opens a network connection.
+      </p>
+      <p>
+        The on-device Prompt API (Chrome's built-in LanguageModel) executes
+        entirely inside the browser process. Image bytes handed to
+        <code>LanguageModel.ImagePart</code> stay on this device.
+      </p>
+    </section>
+
+    <section>
+      <h2>Your choices</h2>
+      <p>
+        You can toggle auto-audit and the badge from the popup. You can
+        enable or disable save-history in Options. You can delete all local
+        data from the Privacy section of Options. Uninstalling the extension
+        deletes all local data.
+      </p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>
+        Questions: <a href="mailto:support@zovo.one">support@zovo.one</a> ·
+        <a href="https://zovo.one">https://zovo.one</a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>

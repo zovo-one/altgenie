@@ -1,0 +1,839 @@
+{
+  "extName": {
+    "message": "AltGenie — alt szöveg generálása képekhez, WCAG-barát és helyben",
+    "description": "Extension name shown in chrome://extensions and the Chrome Web Store listing title."
+  },
+  "extDesc": {
+    "message": "Kattints jobb gombbal bármely képre WCAG-barát alt szövegért. Privát, bejelentkezés, API-kulcs és felhő nélkül. A Chrome beépített MI-jét használja.",
+    "description": "Extension description shown in chrome://extensions and the Chrome Web Store listing short summary (≤132 chars)."
+  },
+  "actionTitle": {
+    "message": "AltGenie",
+    "description": "Tooltip for the toolbar action icon."
+  },
+  "permContextMenusJustification": {
+    "message": "Regisztrálja a képeken a jobb gombos „Alt szöveg generálása” menüt. A felhasználó kattintása az egyértelmű gesztus, amely engedélyezi az egyetlen kép feldolgozását.",
+    "description": "CWS reviewer justification for the contextMenus permission."
+  },
+  "permActiveTabJustification": {
+    "message": "Felhasználói gesztusra (jobb kattintás vagy jelvényre kattintás) kapott jogosultság, amely engedélyezi az oldal auditálását. Nem igényel host_permissions engedélyt.",
+    "description": "CWS reviewer justification for the activeTab permission."
+  },
+  "permScriptingJustification": {
+    "message": "Lehetővé teszi a dinamikus executeScript használatát az auditáláshoz és a generált alt szöveg beírásához. Nincsenek statikus tartalomszkriptek.",
+    "description": "CWS reviewer justification for the scripting permission."
+  },
+  "permSidePanelJustification": {
+    "message": "Megnyitja az oldalsó panelt, ahol az eszközön futó LanguageModel dolgozik. A Prompt API nem érhető el a service workerben.",
+    "description": "CWS reviewer justification for the sidePanel permission."
+  },
+  "permStorageJustification": {
+    "message": "Megőrzi a felhasználói beállításokat (audit kapcsoló, előzmények mentése kapcsoló, prompt sablon). Alapértelmezés szerint nem tárol képadatokat vagy generált szöveget.",
+    "description": "CWS reviewer justification for the storage permission."
+  },
+  "agnPopupTitle": {
+    "message": "AltGenie",
+    "description": "Brand wordmark shown in the popup header and used as the popup document title."
+  },
+  "agnPopupBuiltBy": {
+    "message": "Készítette a zovo.one",
+    "description": "Small link in the popup header pointing to the publisher homepage."
+  },
+  "agnPopupHintAriaLabel": {
+    "message": "Az AltGenie használata",
+    "description": "Accessible label for the popup hint section."
+  },
+  "agnPopupHintBody": {
+    "message": "Kattints jobb gombbal bármely képre bármely oldalon, és válaszd az „Alt szöveg generálása (AltGenie)” lehetőséget. Minden az eszközödön fut.",
+    "description": "Short reminder shown in the popup body that describes the single user gesture."
+  },
+  "agnPopupSettingsAriaLabel": {
+    "message": "AltGenie beállítások",
+    "description": "Accessible label for the popup settings list."
+  },
+  "agnPopupAutoAuditTitle": {
+    "message": "Az oldal automatikus auditálása",
+    "description": "Popup toggle label: enables the page audit on the active tab."
+  },
+  "agnPopupAutoAuditSub": {
+    "message": "Jelvényen mutatja az alt szöveg nélküli képek számát. Az oldal tartalma nem hagyja el az eszközödet.",
+    "description": "Popup toggle subtext explaining what auto-audit does."
+  },
+  "agnPopupShowBadgeTitle": {
+    "message": "Jelvény megjelenítése",
+    "description": "Popup toggle label: shows or hides the toolbar badge count."
+  },
+  "agnPopupShowBadgeSub": {
+    "message": "Az alt szöveg nélküli képek passzív számlálása az aktuális lapon.",
+    "description": "Popup toggle subtext explaining the badge."
+  },
+  "agnPopupActionsAriaLabel": {
+    "message": "AltGenie műveletek",
+    "description": "Accessible label for the popup action buttons."
+  },
+  "agnPopupOpenSidePanel": {
+    "message": "Oldalsó panel megnyitása",
+    "description": "Popup button: opens the Chrome side panel where generation runs."
+  },
+  "agnPopupOpening": {
+    "message": "Megnyitás...",
+    "description": "Popup button busy state while the side panel is opening."
+  },
+  "agnPopupOpenOptions": {
+    "message": "Beállítások megnyitása",
+    "description": "Popup button: opens the full options page."
+  },
+  "agnPopupUpgradeEyebrow": {
+    "message": "Zovo Pro",
+    "description": "Eyebrow label on the popup upgrade CTA (free-tier only)."
+  },
+  "agnPopupUpgradeTitle": {
+    "message": "Prompt sablonok és előzmények feloldása",
+    "description": "Title on the popup upgrade CTA (free-tier only)."
+  },
+  "agnPopupFooterBrand": {
+    "message": "zovo.one",
+    "description": "Footer brand link in the popup."
+  },
+  "agnPopupFooterPrivacy": {
+    "message": "Adatvédelem",
+    "description": "Footer privacy-policy link in the popup."
+  },
+  "agnPopupFooterDisclaimer": {
+    "message": "Nem áll kapcsolatban a Google-lel vagy a Chrome-mal. Az AltGenie a Chrome beépített MI-jét használja; a képeid az eszközödön maradnak.",
+    "description": "Footer disclaimer in the popup clarifying the independence from Google."
+  },
+  "agnPopupSrPro": {
+    "message": "Pro licenc aktív.",
+    "description": "Screen-reader live region: Pro tier active."
+  },
+  "agnPopupSrFree": {
+    "message": "Ingyenes csomag.",
+    "description": "Screen-reader live region: Free tier active."
+  },
+  "agnPopupNoTab": {
+    "message": "Nincs aktív lap. Nyiss meg egy oldalt, és próbáld újra.",
+    "description": "Popup error when the side panel cannot be opened because no active tab is available."
+  },
+  "agnPopupSidePanelError": {
+    "message": "Nem sikerült megnyitni az oldalsó panelt. Próbáld újra, vagy nyisd meg a chrome://extensions oldalról.",
+    "description": "Popup error when chrome.sidePanel.open fails."
+  },
+  "agnOptionsNavAriaLabel": {
+    "message": "AltGenie beállítások navigáció",
+    "description": "Accessible label for the options sidebar navigation."
+  },
+  "agnOptionsSidebarFooter": {
+    "message": "Készítette a zovo.one",
+    "description": "Footer link in the options sidebar."
+  },
+  "agnOptionsNav_general": {
+    "message": "Általános",
+    "description": "Sidebar nav label for the General section."
+  },
+  "agnOptionsNav_auto_audit": {
+    "message": "Automatikus audit",
+    "description": "Sidebar nav label for the Auto-audit section."
+  },
+  "agnOptionsNav_license": {
+    "message": "Pro licenc",
+    "description": "Sidebar nav label for the Pro License section."
+  },
+  "agnOptionsNav_data": {
+    "message": "Adatok",
+    "description": "Sidebar nav label for the Data section."
+  },
+  "agnOptionsNav_about": {
+    "message": "Névjegy",
+    "description": "Sidebar nav label for the About section."
+  },
+  "agnOptionsEyebrowGeneral": {
+    "message": "Általános",
+    "description": "Eyebrow label for the General section."
+  },
+  "agnOptionsTitleGeneral": {
+    "message": "Hogyan jelenik meg az AltGenie",
+    "description": "Title for the General section."
+  },
+  "agnOptionsSubGeneral": {
+    "message": "Válaszd ki, hogy a jelvény látható-e, és hogy az oldalak automatikusan auditálódjanak-e.",
+    "description": "Subtitle for the General section."
+  },
+  "agnOptionsShowBadgeTitle": {
+    "message": "A jelvény számláló megjelenítése",
+    "description": "Options toggle: show or hide the toolbar badge."
+  },
+  "agnOptionsShowBadgeSub": {
+    "message": "Az alt szöveg nélküli képek passzív számlálása az aktuális lapon.",
+    "description": "Options toggle subtext for the badge."
+  },
+  "agnOptionsAutoAuditTitle": {
+    "message": "Oldalak automatikus auditálása látogatáskor",
+    "description": "Options toggle: enables automatic audit on page load."
+  },
+  "agnOptionsAutoAuditSub": {
+    "message": "Jelvényen mutatja az alt szöveg nélküli képek számát az aktív lapon. Az oldal tartalma nem hagyja el az eszközödet.",
+    "description": "Options toggle subtext for auto-audit."
+  },
+  "agnOptionsPromptTemplateLabel": {
+    "message": "Prompt sablon",
+    "description": "Options label for the prompt-template dropdown."
+  },
+  "agnOptionsPromptTemplateDefault": {
+    "message": "Alapértelmezett (WCAG-barát)",
+    "description": "Options dropdown option: the default prompt template."
+  },
+  "agnOptionsPromptTemplateEcommerce": {
+    "message": "E-kereskedelem (termékfókusz)",
+    "description": "Options dropdown option: e-commerce prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateNews": {
+    "message": "Szerkesztőségi (hírek és cikkek)",
+    "description": "Options dropdown option: editorial prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateTechnical": {
+    "message": "Technikai (diagramok és ábrák)",
+    "description": "Options dropdown option: technical prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateLockedHint": {
+    "message": "A Pro sablonok Zovo Pro licenccel oldhatók fel.",
+    "description": "Options dropdown hint for locked Pro templates."
+  },
+  "agnOptionsThemeLabel": {
+    "message": "Téma",
+    "description": "Options label for the theme segmented control."
+  },
+  "agnOptionsThemeSystem": {
+    "message": "Rendszer",
+    "description": "Options theme choice: follow the OS setting."
+  },
+  "agnOptionsThemeLight": {
+    "message": "Világos",
+    "description": "Options theme choice: force light."
+  },
+  "agnOptionsThemeDark": {
+    "message": "Sötét",
+    "description": "Options theme choice: force dark."
+  },
+  "agnOptionsThemeAriaLabel": {
+    "message": "Téma beállítása",
+    "description": "Accessible radiogroup label for the theme segmented control."
+  },
+  "agnOptionsEyebrowAutoAudit": {
+    "message": "Automatikus audit",
+    "description": "Eyebrow label for the Auto-audit section."
+  },
+  "agnOptionsTitleAutoAudit": {
+    "message": "Oldalak auditálása hiányzó alt szövegért",
+    "description": "Title for the Auto-audit section."
+  },
+  "agnOptionsAutoAuditExplainer": {
+    "message": "Az auditálás beolvassa az oldal képelemeit, hogy megszámolja, hányból hiányzik az alt szöveg. Az audit az eszközön fut dinamikus szkripteléssel; az oldal tartalma sehová nem kerül elküldésre.",
+    "description": "Long-form explainer under the Auto-audit section title."
+  },
+  "agnOptionsSaveHistoryTitle": {
+    "message": "Generálási előzmények helyi mentése",
+    "description": "Options toggle: store past generated alt texts in chrome.storage.local."
+  },
+  "agnOptionsSaveHistorySub": {
+    "message": "Alapértelmezés szerint kikapcsolva. Bekapcsolva a generált szöveg csak ezen az eszközön tárolódik. Bármikor törölheted az Adatok szakaszban.",
+    "description": "Options toggle subtext for save-history."
+  },
+  "agnOptionsAutoAuditNote": {
+    "message": "Az automatikus audit soha nem küld oldaltartalmat semmilyen szerverre. A számlálás ezen az eszközön marad.",
+    "description": "Informational note under the Auto-audit section."
+  },
+  "agnOptionsEyebrowLicense": {
+    "message": "Licenc",
+    "description": "Eyebrow label for the Pro License section."
+  },
+  "agnOptionsTitleLicense": {
+    "message": "Zovo Pro kulcs aktiválása vagy eltávolítása",
+    "description": "Title for the Pro License section."
+  },
+  "agnOptionsSubLicense": {
+    "message": "A Pro licenc feloldja a prompt sablonokat, a helyi előzményeket és az exportot. Egyszeri fizetés vagy egy előfizetés; örökre aktiválja a Prót ebben a bővítményben.",
+    "description": "Subtitle for the Pro License section."
+  },
+  "agnOptionsLicenseActivePrefix": {
+    "message": "Pro aktív.",
+    "description": "Prefix shown when a Pro license is active."
+  },
+  "agnOptionsLicenseActiveValidThrough": {
+    "message": "Érvényes eddig: $1.",
+    "description": "License status line showing the expiry date. $1 is a localized date string.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "December 31, 2026"
+      }
+    }
+  },
+  "agnOptionsLicenseActiveLifetime": {
+    "message": "Örökös licenc.",
+    "description": "License status line for a lifetime license."
+  },
+  "agnOptionsLicenseDeactivate": {
+    "message": "Deaktiválás",
+    "description": "Button: deactivate the current license."
+  },
+  "agnOptionsLicenseDeactivated": {
+    "message": "Licenc deaktiválva. Vissza az ingyenes csomaghoz.",
+    "description": "Status message after the user deactivates a license."
+  },
+  "agnOptionsLicenseKeyLabel": {
+    "message": "Licenckulcs",
+    "description": "Accessible label for the license-key input."
+  },
+  "agnOptionsLicensePlaceholder": {
+    "message": "ZOVO-XXXX-XXXX-XXXX-XXXX",
+    "description": "Placeholder text for the license-key input."
+  },
+  "agnOptionsLicenseActivate": {
+    "message": "Aktiválás",
+    "description": "Button: activate the entered license key."
+  },
+  "agnOptionsLicenseVerifying": {
+    "message": "Ellenőrzés...",
+    "description": "Button busy state while the license key is being verified."
+  },
+  "agnOptionsLicenseEmpty": {
+    "message": "Először adj meg egy licenckulcsot.",
+    "description": "Error shown when activating with an empty input."
+  },
+  "agnOptionsLicenseActivated": {
+    "message": "Licenc aktiválva. A Pro feloldva.",
+    "description": "Success message after activation."
+  },
+  "agnOptionsLicenseFailed": {
+    "message": "A kulcs ellenőrzése nem sikerült. Ellenőrizd a kulcsot, és próbáld újra.",
+    "description": "Error shown when the license server rejects the key."
+  },
+  "agnOptionsLicenseError": {
+    "message": "Az ellenőrzés sikertelen. Próbáld újra egy pillanat múlva.",
+    "description": "Error shown when the license verify endpoint is unreachable."
+  },
+  "agnOptionsLicenseBuy": {
+    "message": "Pro csomagok megtekintése",
+    "description": "Link to the pricing page."
+  },
+  "agnOptionsLicenseRefund": {
+    "message": "14 napos pénzvisszafizetési garancia. Ha a Pro nem éri meg, visszatérítünk, kérdés nélkül.",
+    "description": "Refund promise under the Pro License section."
+  },
+  "agnOptionsEyebrowData": {
+    "message": "Adatok",
+    "description": "Eyebrow label for the Data section."
+  },
+  "agnOptionsTitleData": {
+    "message": "Az adataid ezen az eszközön maradnak",
+    "description": "Title for the Data section."
+  },
+  "agnOptionsSubData": {
+    "message": "Exportáld vagy töröld mindazt, amit az AltGenie ezen az eszközön tárolt. Nincs felhő, nincs szinkronizálás.",
+    "description": "Subtitle for the Data section."
+  },
+  "agnOptionsDataExport": {
+    "message": "Adataim exportálása",
+    "description": "Button: export stored preferences and any saved history to a JSON file."
+  },
+  "agnOptionsDataDelete": {
+    "message": "Minden adat törlése",
+    "description": "Button: delete everything AltGenie has stored on this device."
+  },
+  "agnOptionsPrivacyExportOk": {
+    "message": "$1 kulcs exportálva a letöltéseidbe.",
+    "description": "Success message after exporting data. $1 is the number of storage keys written.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "agnOptionsPrivacyExportErr": {
+    "message": "Az exportálás sikertelen. Kérjük, próbáld újra.",
+    "description": "Error shown when the export download fails."
+  },
+  "agnOptionsPrivacyDeleteConfirm": {
+    "message": "Törlöd az összes AltGenie adatot erről az eszközről? Ez nem vonható vissza.",
+    "description": "window.confirm prompt before deleting all data."
+  },
+  "agnOptionsPrivacyDeleteOk": {
+    "message": "Minden AltGenie adat törölve erről az eszközről.",
+    "description": "Success message after deleting all data."
+  },
+  "agnOptionsPrivacyDeleteErr": {
+    "message": "A törlés sikertelen. Kérjük, próbáld újra.",
+    "description": "Error shown when the delete operation fails."
+  },
+  "agnOptionsEyebrowAbout": {
+    "message": "Névjegy",
+    "description": "Eyebrow label for the About section."
+  },
+  "agnOptionsTitleAbout": {
+    "message": "Az AltGenie névjegye",
+    "description": "Title for the About section."
+  },
+  "agnOptionsAboutVersion": {
+    "message": "Verzió",
+    "description": "Label preceding the version number in the About section."
+  },
+  "agnOptionsAboutBuiltBy": {
+    "message": "Készítette",
+    "description": "Label preceding the publisher link in the About section."
+  },
+  "agnOptionsAboutPrivacy": {
+    "message": "Adatvédelmi szabályzat",
+    "description": "Link to the privacy policy in the About section."
+  },
+  "agnOptionsAboutSource": {
+    "message": "Forráskód",
+    "description": "Link to the public source repository in the About section."
+  },
+  "agnOptionsAboutDisclaimer": {
+    "message": "Az AltGenie a Zovo független eszköze. Nem áll kapcsolatban a Google-lel vagy a Chrome-mal. Az AltGenie a Chrome beépített MI-jét (Gemini Nano) használja, amely az eszközödön fut; a képeidet soha nem töltjük fel.",
+    "description": "Independence and privacy disclaimer in the About section."
+  },
+  "agnOptionsFooterBuiltBy": {
+    "message": "Készítette a zovo.one",
+    "description": "Footer link in the options page."
+  },
+  "agnOptionsProLockLabel": {
+    "message": "Pro funkció, zárolva",
+    "description": "Accessible label for the Pro badge."
+  },
+  "agnOptionsProBadge": {
+    "message": "Pro",
+    "description": "Pro badge text."
+  },
+  "agnOptionsSrPro": {
+    "message": "Pro licenc aktív.",
+    "description": "Screen-reader live region for the options page: Pro active."
+  },
+  "agnOptionsSrFree": {
+    "message": "Ingyenes csomag.",
+    "description": "Screen-reader live region for the options page: Free tier."
+  },
+  "agnOnbEyebrow": {
+    "message": "AltGenie",
+    "description": "Brand eyebrow shown at the top of every onboarding page."
+  },
+  "agnOnbPage1Heading": {
+    "message": "Alt szöveg, amit a böngésződ ír",
+    "description": "Onboarding page 1 main heading."
+  },
+  "agnOnbPage1Sub": {
+    "message": "Kattints jobb gombbal bármely képre, és az AltGenie rövid, WCAG-barát leírást fogalmaz a Chrome beépített MI-jével. Bejelentkezés, feltöltés és felhő nélkül."
+  },
+  "agnOnbPage1Bullet1": {
+    "message": "Az eszközön fut. A képeid soha nem hagyják el a böngészőt."
+  },
+  "agnOnbPage1Bullet2": {
+    "message": "WCAG-barát. Rövid, konkrét, őszinte leírások."
+  },
+  "agnOnbPage1Bullet3": {
+    "message": "Bejelentkezés nélkül. API-kulcs nélkül. A kezdéshez nincs szükség előfizetésre."
+  },
+  "agnOnbPage1Button": {
+    "message": "Nézd meg, hogyan működik",
+    "description": "Primary CTA on onboarding page 1."
+  },
+  "agnOnbPage2Heading": {
+    "message": "Három kattintás az alt szövegig",
+    "description": "Onboarding page 2 main heading."
+  },
+  "agnOnbPage2Sub": {
+    "message": "Bármely oldal bármely képéből szerkeszthető leírás, amelyet bárhová beilleszthetsz."
+  },
+  "agnOnbPage2Step1Title": {
+    "message": "Kattints jobb gombbal a képre"
+  },
+  "agnOnbPage2Step1Body": {
+    "message": "Válaszd az „Alt szöveg generálása (AltGenie)” lehetőséget a helyi menüből. Megnyílik az oldalsó panel."
+  },
+  "agnOnbPage2Step2Title": {
+    "message": "A Chrome MI-je vázlatot ír"
+  },
+  "agnOnbPage2Step2Body": {
+    "message": "A Gemini Nano az eszközödön fut, és rövid leírást fogalmaz. Nincs feltöltés, nincs szerver."
+  },
+  "agnOnbPage2Step3Title": {
+    "message": "Szerkeszd, másold vagy írd vissza"
+  },
+  "agnOnbPage2Step3Body": {
+    "message": "Igazítsd a szöveget, másold a vágólapra, vagy írd közvetlenül a kép alt attribútumába."
+  },
+  "agnOnbPage2TryNow": {
+    "message": "Próbáld ki egy mintaképen",
+    "description": "Secondary CTA on onboarding page 2."
+  },
+  "agnOnbPage2Next": {
+    "message": "Folytatás",
+    "description": "Primary CTA on onboarding page 2."
+  },
+  "agnOnbPage3Heading": {
+    "message": "Tedd a magadévá",
+    "description": "Onboarding page 3 main heading."
+  },
+  "agnOnbPage3Sub": {
+    "message": "Két gyors beállítás lefedi a legtöbb munkafolyamatot. Bármikor módosíthatod a felugró ablakból vagy a beállítások oldalról."
+  },
+  "agnOnbPage3AutoAuditLabel": {
+    "message": "Oldalak automatikus auditálása"
+  },
+  "agnOnbPage3AutoAuditValue": {
+    "message": "Az alt szöveg nélküli képek jelvényszáma"
+  },
+  "agnOnbPage3ProTemplateLabel": {
+    "message": "Prompt sablonok"
+  },
+  "agnOnbPage3ProTemplateValue": {
+    "message": "Pro: e-kereskedelem, szerkesztőségi, technikai"
+  },
+  "agnOnbContinue": {
+    "message": "Folytatás",
+    "description": "Primary CTA used on multiple onboarding pages."
+  },
+  "agnOnbPage4Heading": {
+    "message": "Szia, Michael vagyok",
+    "description": "Onboarding page 4 main heading (founder card)."
+  },
+  "agnOnbPage4Sub": {
+    "message": "Azért készítettem az AltGenie-t, mert az alt szöveg kézzel írása az első, ami elmarad, amikor szorít a határidő. Az eszközödön fut, soha nem látja a képeidet, és soha nem tölt fel semmit."
+  },
+  "agnOnbPage4SubMuted": {
+    "message": "Egy ember, nyilvánosan építkezve itt:"
+  },
+  "agnOnbPage5Heading": {
+    "message": "Az ingyenes örökre működik. A Pro valódi munkafolyamathoz való.",
+    "description": "Onboarding page 5 main heading (pricing)."
+  },
+  "agnOnbPage5Sub": {
+    "message": "Az ingyenes verzió lefedi a mindennapi alt szöveg generálást. A Pro szerkesztőknek, marketingeseknek és akadálymentesítési auditokhoz készült."
+  },
+  "agnOnbPage5FreeBadge": {
+    "message": "Ingyenes"
+  },
+  "agnOnbPage5FreePrice": {
+    "message": "Ingyenes"
+  },
+  "agnOnbPage5FreeBullet1": {
+    "message": "Korlátlan egyképes generálás"
+  },
+  "agnOnbPage5FreeBullet2": {
+    "message": "Automatikus audit jelvényszámmal"
+  },
+  "agnOnbPage5FreeBullet3": {
+    "message": "Alapértelmezett WCAG-barát prompt sablon"
+  },
+  "agnOnbPage5ProBadge": {
+    "message": "Pro"
+  },
+  "agnOnbPage5ProPrice": {
+    "message": "$$4.99/hó vagy $$99 örökre"
+  },
+  "agnOnbPage5ProBullet1": {
+    "message": "E-kereskedelmi, szerkesztőségi és technikai prompt sablonok"
+  },
+  "agnOnbPage5ProBullet2": {
+    "message": "Helyi generálási előzmények kereséssel"
+  },
+  "agnOnbPage5ProBullet3": {
+    "message": "Előzmények exportálása CSV és JSON formátumba"
+  },
+  "agnOnbPage5ProBullet4": {
+    "message": "Tömeges „mindet beír” az automatikusan auditált oldalakon"
+  },
+  "agnOnbPage5ProCta": {
+    "message": "Pro csomagok megtekintése"
+  },
+  "agnOnbPage5FreeCta": {
+    "message": "Maradok az ingyenesen"
+  },
+  "agnOnbPage5Refund": {
+    "message": "14 napos pénzvisszafizetési garancia. Ha a Pro nem éri meg, visszatérítünk, kérdés nélkül."
+  },
+  "agnOnbPage6Heading": {
+    "message": "Készen állsz",
+    "description": "Onboarding page 6 main heading (sign-off)."
+  },
+  "agnOnbPage6Sub": {
+    "message": "Kattints jobb gombbal bármely képre, és válaszd az „Alt szöveg generálása (AltGenie)” lehetőséget. Az első vázlat egy kattintásra van."
+  },
+  "agnOnbPage6Button": {
+    "message": "Az AltGenie használatának megkezdése",
+    "description": "Primary CTA on onboarding page 6."
+  },
+  "agnOnbSkip": {
+    "message": "Beállítás kihagyása",
+    "description": "Skip link in the onboarding footer."
+  },
+  "agnOnbBack": {
+    "message": "Vissza",
+    "description": "Back button in the onboarding footer."
+  },
+  "agnOnbNext": {
+    "message": "Tovább",
+    "description": "Next button in the onboarding footer."
+  },
+  "agnOnbDone": {
+    "message": "Kész",
+    "description": "Done button in the onboarding footer (final page)."
+  },
+  "agnOnbStepAriaLabel": {
+    "message": "Bevezető lépések",
+    "description": "Accessible label for the onboarding step indicator."
+  },
+  "agnOnbStepPositionAriaLabel": {
+    "message": "$1. lépés",
+    "description": "Accessible label for an individual step dot. $1 is the 1-based page index.",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "agnOnbProgressAriaLabel": {
+    "message": "Bevezető folyamata",
+    "description": "Accessible label for the progress indicator."
+  },
+  "agnOnbPageOf": {
+    "message": "$1 / $2",
+    "description": "Page indicator text in the onboarding footer. $1 is current page, $2 is total pages.",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "agnOnbFooterBrand": {
+    "message": "Készítette a zovo.one",
+    "description": "Brand link in the onboarding footer."
+  },
+  "agnPanelHeaderTitle": {
+    "message": "AltGenie",
+    "description": "Side panel header brand wordmark."
+  },
+  "agnPanelFooterBrand": {
+    "message": "Készítette a zovo.one",
+    "description": "Side panel footer brand link text."
+  },
+  "agnPanelStateLoading": {
+    "message": "Betöltés...",
+    "description": "Side panel loading-state label before bootstrap completes."
+  },
+  "agnPanelStateChecking": {
+    "message": "Az eszközön futó MI ellenőrzése...",
+    "description": "Side panel PENDING / AVAILABILITY_CHECK state label."
+  },
+  "agnPanelStatePreparing": {
+    "message": "Felkészülés a generálásra...",
+    "description": "Side panel MODEL_READY state label."
+  },
+  "agnPanelStateGenerating": {
+    "message": "Alt szöveg generálása...",
+    "description": "Side panel GENERATING state label."
+  },
+  "agnPanelStateIdleTitle": {
+    "message": "Nincs kiválasztott kép",
+    "description": "Side panel IDLE state title."
+  },
+  "agnPanelStateIdleBody": {
+    "message": "Kattints jobb gombbal bármely képre egy weboldalon, és válaszd az „Alt szöveg generálása (AltGenie)” lehetőséget.",
+    "description": "Side panel IDLE state body."
+  },
+  "agnPanelStateIdlePrivate": {
+    "message": "Minden az eszközön fut a Chrome beépített MI-jével. Bejelentkezés, feltöltés és felhő nélkül.",
+    "description": "Side panel IDLE state privacy reminder."
+  },
+  "agnPanelAuditCount": {
+    "message": "Hiányzó alt szöveg ezen az oldalon ($1)",
+    "description": "Side panel audit-list card heading. $1 is the number of missing images.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "agnPanelAuditHidden": {
+    "message": "(rejtett)",
+    "description": "Inline marker for off-screen images in the audit list."
+  },
+  "agnPanelAuditGenerate": {
+    "message": "Generálás",
+    "description": "Side panel audit-list row button."
+  },
+  "agnPanelDownloadTitle": {
+    "message": "Az eszközön futó modell letöltése",
+    "description": "Side panel MODEL_DOWNLOADABLE state title."
+  },
+  "agnPanelDownloadBody": {
+    "message": "Az AltGenie a Chrome beépített MI-jét (Gemini Nano) használja. Az első alkalommal le kell töltenie egy modellt (kb. 1,5 GB). A letöltés után minden generálás az eszközödön történik.",
+    "description": "Side panel MODEL_DOWNLOADABLE state body."
+  },
+  "agnPanelDownloadButton": {
+    "message": "Modell letöltése",
+    "description": "Side panel MODEL_DOWNLOADABLE state primary button."
+  },
+  "agnPanelDownloadFootnote": {
+    "message": "Chrome 127+ szükséges asztali gépen és kb. 1,5 GB szabad lemezterület.",
+    "description": "Side panel MODEL_DOWNLOADABLE state footnote."
+  },
+  "agnPanelDownloadingTitle": {
+    "message": "Modell letöltése...",
+    "description": "Side panel MODEL_DOWNLOADING state title."
+  },
+  "agnPanelDownloadingStatus": {
+    "message": "$1% — az eszközöd letölti a Gemini Nanót. Nyitva hagyhatod ezt a panelt.",
+    "description": "Side panel MODEL_DOWNLOADING state status line. $1 is the integer percentage.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "42"
+      }
+    }
+  },
+  "agnPanelUnavailableTitle": {
+    "message": "Az eszközön futó MI nem érhető el",
+    "description": "Side panel UNAVAILABLE state title."
+  },
+  "agnPanelUnavailableBody": {
+    "message": "Az AltGenie-nek szüksége van a Chrome beépített MI-jére (Prompt API), amelyhez szükséges:"
+  },
+  "agnPanelUnavailableBullet1": {
+    "message": "Chrome 127 vagy újabb asztali gépen"
+  },
+  "agnPanelUnavailableBullet2": {
+    "message": "Korszerű hardver (a modell kb. 1,5 GB)"
+  },
+  "agnPanelUnavailableBullet3": {
+    "message": "A Prompt API engedélyezve a chrome://flags oldalon"
+  },
+  "agnPanelUnavailableLink": {
+    "message": "chrome://flags/#prompt-api-for-gemini-nano megnyitása",
+    "description": "Side panel UNAVAILABLE state link to the chrome://flags anchor."
+  },
+  "agnPanelUnavailableFootnote": {
+    "message": "Az AltGenie soha nem tölti fel a képeidet. Nincs szerveroldali tartalék, ha az eszközön futó MI nem érhető el."
+  },
+  "agnPanelErrorCors": {
+    "message": "A CORS nélküli, más eredetű kép nem olvasható be. A webhely nem engedélyezte a más eredetű olvasást.",
+    "description": "Side panel ERROR state message when image fetch is blocked by CORS."
+  },
+  "agnPanelErrorGeneric": {
+    "message": "Valami hiba történt.",
+    "description": "Side panel ERROR state fallback message."
+  },
+  "agnPanelErrorImageUrl": {
+    "message": "Kép URL-je: $1",
+    "description": "Side panel ERROR state image-URL line. $1 is the URL.",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://example.com/photo.png"
+      }
+    }
+  },
+  "agnPanelErrorCopyUrl": {
+    "message": "Kép URL-jének másolása",
+    "description": "Side panel ERROR state button (CORS-only)."
+  },
+  "agnPanelErrorRetry": {
+    "message": "Újra",
+    "description": "Side panel ERROR state retry button."
+  },
+  "agnPanelErrorDismiss": {
+    "message": "Bezárás",
+    "description": "Side panel ERROR state dismiss button."
+  },
+  "agnPanelResultPreviewAlt": {
+    "message": "A kép, amelyre jobb gombbal kattintottál",
+    "description": "Alt text for the result-view preview thumbnail."
+  },
+  "agnPanelResultLabel": {
+    "message": "Generált alt szöveg (szerkeszd szükség szerint):",
+    "description": "Side panel RESULT state textarea label."
+  },
+  "agnPanelResultCharcount": {
+    "message": "$1 / 125",
+    "description": "Side panel RESULT state character counter. $1 is the current character count.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "87"
+      }
+    }
+  },
+  "agnPanelResultOverbudget": {
+    "message": " (túllépve)",
+    "description": "Side panel RESULT state over-budget marker appended to the char count."
+  },
+  "agnPanelResultCopy": {
+    "message": "Másolás a vágólapra",
+    "description": "Side panel RESULT state copy button."
+  },
+  "agnPanelResultWrite": {
+    "message": "Beírás a képbe",
+    "description": "Side panel RESULT state write-to-alt button."
+  },
+  "agnPanelResultRegenerate": {
+    "message": "Újragenerálás",
+    "description": "Side panel RESULT state regenerate button."
+  },
+  "agnPanelResultWriteStatus": {
+    "message": "Beírás megkísérelve. Ha a kép védett oldalon van, a szöveg helyette a vágólapra került.",
+    "description": "Side panel RESULT state status line after a write attempt."
+  },
+  "agnActionCopy": {
+    "message": "Másolás",
+    "description": "Generic 'Copy' action label."
+  },
+  "agnActionRegenerate": {
+    "message": "Újragenerálás",
+    "description": "Generic 'Regenerate' action label."
+  },
+  "agnActionWrite": {
+    "message": "Beírás",
+    "description": "Generic 'Write' action label."
+  },
+  "agnActionSave": {
+    "message": "Mentés",
+    "description": "Generic 'Save' action label."
+  },
+  "agnActionCancel": {
+    "message": "Mégse",
+    "description": "Generic 'Cancel' action label."
+  },
+  "agnActionRetry": {
+    "message": "Újra",
+    "description": "Generic 'Retry' action label."
+  },
+  "agnActionOpen": {
+    "message": "Megnyitás",
+    "description": "Generic 'Open' action label."
+  },
+  "agnActionClose": {
+    "message": "Bezárás",
+    "description": "Generic 'Close' action label."
+  },
+  "agnActionNext": {
+    "message": "Tovább",
+    "description": "Generic 'Next' action label."
+  },
+  "agnActionBack": {
+    "message": "Vissza",
+    "description": "Generic 'Back' action label."
+  },
+  "agnActionFinish": {
+    "message": "Befejezés",
+    "description": "Generic 'Finish' action label."
+  }
+}

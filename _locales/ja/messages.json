@@ -1,0 +1,839 @@
+{
+  "extName": {
+    "message": "AltGenie — 画像の代替テキスト生成、WCAG 準拠・端末内で処理",
+    "description": "Extension name shown in chrome://extensions and the Chrome Web Store listing title."
+  },
+  "extDesc": {
+    "message": "任意の画像を右クリックして WCAG に配慮した代替テキストを生成。プライベート、ログイン不要、API キー不要、クラウド不要。Chrome の組み込み AI を使用します。",
+    "description": "Extension description shown in chrome://extensions and the Chrome Web Store listing short summary (≤132 chars)."
+  },
+  "actionTitle": {
+    "message": "AltGenie",
+    "description": "Tooltip for the toolbar action icon."
+  },
+  "permContextMenusJustification": {
+    "message": "画像上に右クリックの「代替テキストを生成」メニューを登録します。ユーザーのクリックが、単一画像の処理を許可する明示的な操作です。",
+    "description": "CWS reviewer justification for the contextMenus permission."
+  },
+  "permActiveTabJustification": {
+    "message": "ユーザー操作（右クリックまたはバッジのクリック）で付与され、ページ監査を許可します。host_permissions は不要です。",
+    "description": "CWS reviewer justification for the activeTab permission."
+  },
+  "permScriptingJustification": {
+    "message": "監査パスと生成した代替テキストの書き込みのために動的な executeScript を有効にします。静的なコンテンツスクリプトはありません。",
+    "description": "CWS reviewer justification for the scripting permission."
+  },
+  "permSidePanelJustification": {
+    "message": "オンデバイスの LanguageModel を実行するサイドパネルを開きます。Prompt API は service worker では利用できません。",
+    "description": "CWS reviewer justification for the sidePanel permission."
+  },
+  "permStorageJustification": {
+    "message": "ユーザー設定（監査トグル、履歴保存トグル、プロンプトテンプレート）を保持します。デフォルトでは画像データや生成テキストは保存されません。",
+    "description": "CWS reviewer justification for the storage permission."
+  },
+  "agnPopupTitle": {
+    "message": "AltGenie",
+    "description": "Brand wordmark shown in the popup header and used as the popup document title."
+  },
+  "agnPopupBuiltBy": {
+    "message": "zovo.one が開発",
+    "description": "Small link in the popup header pointing to the publisher homepage."
+  },
+  "agnPopupHintAriaLabel": {
+    "message": "AltGenie の使い方",
+    "description": "Accessible label for the popup hint section."
+  },
+  "agnPopupHintBody": {
+    "message": "任意のページで任意の画像を右クリックし、「代替テキストを生成 (AltGenie)」を選択します。すべてがあなたのデバイス上で動作します。",
+    "description": "Short reminder shown in the popup body that describes the single user gesture."
+  },
+  "agnPopupSettingsAriaLabel": {
+    "message": "AltGenie の設定",
+    "description": "Accessible label for the popup settings list."
+  },
+  "agnPopupAutoAuditTitle": {
+    "message": "このページを自動監査",
+    "description": "Popup toggle label: enables the page audit on the active tab."
+  },
+  "agnPopupAutoAuditSub": {
+    "message": "代替テキストがない画像の数をバッジに表示します。ページの内容がデバイスから出ることはありません。",
+    "description": "Popup toggle subtext explaining what auto-audit does."
+  },
+  "agnPopupShowBadgeTitle": {
+    "message": "バッジを表示",
+    "description": "Popup toggle label: shows or hides the toolbar badge count."
+  },
+  "agnPopupShowBadgeSub": {
+    "message": "現在のタブで代替テキストがない画像を受動的にカウントします。",
+    "description": "Popup toggle subtext explaining the badge."
+  },
+  "agnPopupActionsAriaLabel": {
+    "message": "AltGenie の操作",
+    "description": "Accessible label for the popup action buttons."
+  },
+  "agnPopupOpenSidePanel": {
+    "message": "サイドパネルを開く",
+    "description": "Popup button: opens the Chrome side panel where generation runs."
+  },
+  "agnPopupOpening": {
+    "message": "開いています...",
+    "description": "Popup button busy state while the side panel is opening."
+  },
+  "agnPopupOpenOptions": {
+    "message": "設定を開く",
+    "description": "Popup button: opens the full options page."
+  },
+  "agnPopupUpgradeEyebrow": {
+    "message": "Zovo Pro",
+    "description": "Eyebrow label on the popup upgrade CTA (free-tier only)."
+  },
+  "agnPopupUpgradeTitle": {
+    "message": "プロンプトテンプレートと履歴のロックを解除",
+    "description": "Title on the popup upgrade CTA (free-tier only)."
+  },
+  "agnPopupFooterBrand": {
+    "message": "zovo.one",
+    "description": "Footer brand link in the popup."
+  },
+  "agnPopupFooterPrivacy": {
+    "message": "プライバシー",
+    "description": "Footer privacy-policy link in the popup."
+  },
+  "agnPopupFooterDisclaimer": {
+    "message": "Google および Chrome とは提携していません。AltGenie は Chrome の組み込み AI を使用します。画像はあなたのデバイスに留まります。",
+    "description": "Footer disclaimer in the popup clarifying the independence from Google."
+  },
+  "agnPopupSrPro": {
+    "message": "Pro ライセンス有効。",
+    "description": "Screen-reader live region: Pro tier active."
+  },
+  "agnPopupSrFree": {
+    "message": "無料プラン。",
+    "description": "Screen-reader live region: Free tier active."
+  },
+  "agnPopupNoTab": {
+    "message": "アクティブなタブが見つかりません。ページを開いてもう一度お試しください。",
+    "description": "Popup error when the side panel cannot be opened because no active tab is available."
+  },
+  "agnPopupSidePanelError": {
+    "message": "サイドパネルを開けませんでした。もう一度試すか、chrome://extensions から開いてください。",
+    "description": "Popup error when chrome.sidePanel.open fails."
+  },
+  "agnOptionsNavAriaLabel": {
+    "message": "AltGenie 設定のナビゲーション",
+    "description": "Accessible label for the options sidebar navigation."
+  },
+  "agnOptionsSidebarFooter": {
+    "message": "zovo.one が開発",
+    "description": "Footer link in the options sidebar."
+  },
+  "agnOptionsNav_general": {
+    "message": "一般",
+    "description": "Sidebar nav label for the General section."
+  },
+  "agnOptionsNav_auto_audit": {
+    "message": "自動監査",
+    "description": "Sidebar nav label for the Auto-audit section."
+  },
+  "agnOptionsNav_license": {
+    "message": "Pro ライセンス",
+    "description": "Sidebar nav label for the Pro License section."
+  },
+  "agnOptionsNav_data": {
+    "message": "データ",
+    "description": "Sidebar nav label for the Data section."
+  },
+  "agnOptionsNav_about": {
+    "message": "概要",
+    "description": "Sidebar nav label for the About section."
+  },
+  "agnOptionsEyebrowGeneral": {
+    "message": "一般",
+    "description": "Eyebrow label for the General section."
+  },
+  "agnOptionsTitleGeneral": {
+    "message": "AltGenie の表示方法",
+    "description": "Title for the General section."
+  },
+  "agnOptionsSubGeneral": {
+    "message": "バッジのカウントを表示するか、ページを自動で監査するかを選択します。",
+    "description": "Subtitle for the General section."
+  },
+  "agnOptionsShowBadgeTitle": {
+    "message": "バッジのカウントを表示",
+    "description": "Options toggle: show or hide the toolbar badge."
+  },
+  "agnOptionsShowBadgeSub": {
+    "message": "現在のタブで代替テキストがない画像を受動的にカウントします。",
+    "description": "Options toggle subtext for the badge."
+  },
+  "agnOptionsAutoAuditTitle": {
+    "message": "訪問時にページを自動監査",
+    "description": "Options toggle: enables automatic audit on page load."
+  },
+  "agnOptionsAutoAuditSub": {
+    "message": "アクティブなタブで代替テキストがない画像の数をバッジに表示します。ページの内容がデバイスから出ることはありません。",
+    "description": "Options toggle subtext for auto-audit."
+  },
+  "agnOptionsPromptTemplateLabel": {
+    "message": "プロンプトテンプレート",
+    "description": "Options label for the prompt-template dropdown."
+  },
+  "agnOptionsPromptTemplateDefault": {
+    "message": "デフォルト（WCAG に配慮）",
+    "description": "Options dropdown option: the default prompt template."
+  },
+  "agnOptionsPromptTemplateEcommerce": {
+    "message": "Eコマース（商品向け）",
+    "description": "Options dropdown option: e-commerce prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateNews": {
+    "message": "編集（ニュースと記事）",
+    "description": "Options dropdown option: editorial prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateTechnical": {
+    "message": "技術（図表とダイアグラム）",
+    "description": "Options dropdown option: technical prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateLockedHint": {
+    "message": "Pro テンプレートは Zovo Pro ライセンスで解除されます。",
+    "description": "Options dropdown hint for locked Pro templates."
+  },
+  "agnOptionsThemeLabel": {
+    "message": "テーマ",
+    "description": "Options label for the theme segmented control."
+  },
+  "agnOptionsThemeSystem": {
+    "message": "システム",
+    "description": "Options theme choice: follow the OS setting."
+  },
+  "agnOptionsThemeLight": {
+    "message": "ライト",
+    "description": "Options theme choice: force light."
+  },
+  "agnOptionsThemeDark": {
+    "message": "ダーク",
+    "description": "Options theme choice: force dark."
+  },
+  "agnOptionsThemeAriaLabel": {
+    "message": "テーマの設定",
+    "description": "Accessible radiogroup label for the theme segmented control."
+  },
+  "agnOptionsEyebrowAutoAudit": {
+    "message": "自動監査",
+    "description": "Eyebrow label for the Auto-audit section."
+  },
+  "agnOptionsTitleAutoAudit": {
+    "message": "代替テキストがないページを監査",
+    "description": "Title for the Auto-audit section."
+  },
+  "agnOptionsAutoAuditExplainer": {
+    "message": "監査はページの画像要素を読み取り、代替テキストがないものの数を数えます。監査は動的スクリプティングによりオンデバイスで実行され、ページの内容はどこにも送信されません。",
+    "description": "Long-form explainer under the Auto-audit section title."
+  },
+  "agnOptionsSaveHistoryTitle": {
+    "message": "生成履歴をローカルに保存",
+    "description": "Options toggle: store past generated alt texts in chrome.storage.local."
+  },
+  "agnOptionsSaveHistorySub": {
+    "message": "デフォルトはオフ。オンにすると、生成されたテキストはこのデバイスにのみ保存されます。「データ」セクションからいつでも削除できます。",
+    "description": "Options toggle subtext for save-history."
+  },
+  "agnOptionsAutoAuditNote": {
+    "message": "自動監査がページの内容をサーバーに送信することは決してありません。カウントはこのデバイスに留まります。",
+    "description": "Informational note under the Auto-audit section."
+  },
+  "agnOptionsEyebrowLicense": {
+    "message": "ライセンス",
+    "description": "Eyebrow label for the Pro License section."
+  },
+  "agnOptionsTitleLicense": {
+    "message": "Zovo Pro キーを有効化または削除",
+    "description": "Title for the Pro License section."
+  },
+  "agnOptionsSubLicense": {
+    "message": "Pro ライセンスは、プロンプトテンプレート、ローカル履歴、エクスポートのロックを解除します。1回の支払いまたは1回のサブスクリプションで、この拡張機能の Pro を永久に有効化します。",
+    "description": "Subtitle for the Pro License section."
+  },
+  "agnOptionsLicenseActivePrefix": {
+    "message": "Pro 有効。",
+    "description": "Prefix shown when a Pro license is active."
+  },
+  "agnOptionsLicenseActiveValidThrough": {
+    "message": "$1 まで有効。",
+    "description": "License status line showing the expiry date. $1 is a localized date string.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "December 31, 2026"
+      }
+    }
+  },
+  "agnOptionsLicenseActiveLifetime": {
+    "message": "買い切りライセンス。",
+    "description": "License status line for a lifetime license."
+  },
+  "agnOptionsLicenseDeactivate": {
+    "message": "無効化",
+    "description": "Button: deactivate the current license."
+  },
+  "agnOptionsLicenseDeactivated": {
+    "message": "ライセンスを無効化しました。無料プランに戻りました。",
+    "description": "Status message after the user deactivates a license."
+  },
+  "agnOptionsLicenseKeyLabel": {
+    "message": "ライセンスキー",
+    "description": "Accessible label for the license-key input."
+  },
+  "agnOptionsLicensePlaceholder": {
+    "message": "ZOVO-XXXX-XXXX-XXXX-XXXX",
+    "description": "Placeholder text for the license-key input."
+  },
+  "agnOptionsLicenseActivate": {
+    "message": "有効化",
+    "description": "Button: activate the entered license key."
+  },
+  "agnOptionsLicenseVerifying": {
+    "message": "確認中...",
+    "description": "Button busy state while the license key is being verified."
+  },
+  "agnOptionsLicenseEmpty": {
+    "message": "まずライセンスキーを入力してください。",
+    "description": "Error shown when activating with an empty input."
+  },
+  "agnOptionsLicenseActivated": {
+    "message": "ライセンスを有効化しました。Pro が解除されました。",
+    "description": "Success message after activation."
+  },
+  "agnOptionsLicenseFailed": {
+    "message": "そのキーは確認できませんでした。キーを確認してもう一度お試しください。",
+    "description": "Error shown when the license server rejects the key."
+  },
+  "agnOptionsLicenseError": {
+    "message": "確認に失敗しました。しばらくしてからもう一度お試しください。",
+    "description": "Error shown when the license verify endpoint is unreachable."
+  },
+  "agnOptionsLicenseBuy": {
+    "message": "Pro プランを見る",
+    "description": "Link to the pricing page."
+  },
+  "agnOptionsLicenseRefund": {
+    "message": "14日間の返金保証。Pro に価値がないと感じたら、理由を問わず返金します。",
+    "description": "Refund promise under the Pro License section."
+  },
+  "agnOptionsEyebrowData": {
+    "message": "データ",
+    "description": "Eyebrow label for the Data section."
+  },
+  "agnOptionsTitleData": {
+    "message": "あなたのデータはこのデバイスに留まります",
+    "description": "Title for the Data section."
+  },
+  "agnOptionsSubData": {
+    "message": "AltGenie がこのデバイスに保存したすべてをエクスポートまたは削除します。クラウドも同期もありません。",
+    "description": "Subtitle for the Data section."
+  },
+  "agnOptionsDataExport": {
+    "message": "データをエクスポート",
+    "description": "Button: export stored preferences and any saved history to a JSON file."
+  },
+  "agnOptionsDataDelete": {
+    "message": "すべてのデータを削除",
+    "description": "Button: delete everything AltGenie has stored on this device."
+  },
+  "agnOptionsPrivacyExportOk": {
+    "message": "$1 個のキーをダウンロードにエクスポートしました。",
+    "description": "Success message after exporting data. $1 is the number of storage keys written.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "agnOptionsPrivacyExportErr": {
+    "message": "エクスポートに失敗しました。もう一度お試しください。",
+    "description": "Error shown when the export download fails."
+  },
+  "agnOptionsPrivacyDeleteConfirm": {
+    "message": "このデバイスからすべての AltGenie データを削除しますか？この操作は元に戻せません。",
+    "description": "window.confirm prompt before deleting all data."
+  },
+  "agnOptionsPrivacyDeleteOk": {
+    "message": "このデバイスからすべての AltGenie データを削除しました。",
+    "description": "Success message after deleting all data."
+  },
+  "agnOptionsPrivacyDeleteErr": {
+    "message": "削除に失敗しました。もう一度お試しください。",
+    "description": "Error shown when the delete operation fails."
+  },
+  "agnOptionsEyebrowAbout": {
+    "message": "概要",
+    "description": "Eyebrow label for the About section."
+  },
+  "agnOptionsTitleAbout": {
+    "message": "AltGenie について",
+    "description": "Title for the About section."
+  },
+  "agnOptionsAboutVersion": {
+    "message": "バージョン",
+    "description": "Label preceding the version number in the About section."
+  },
+  "agnOptionsAboutBuiltBy": {
+    "message": "開発",
+    "description": "Label preceding the publisher link in the About section."
+  },
+  "agnOptionsAboutPrivacy": {
+    "message": "プライバシーポリシー",
+    "description": "Link to the privacy policy in the About section."
+  },
+  "agnOptionsAboutSource": {
+    "message": "ソースコード",
+    "description": "Link to the public source repository in the About section."
+  },
+  "agnOptionsAboutDisclaimer": {
+    "message": "AltGenie は Zovo による独立したツールです。Google および Chrome とは提携していません。AltGenie はあなたのデバイス上で動作する Chrome の組み込み AI (Gemini Nano) を使用します。画像がアップロードされることはありません。",
+    "description": "Independence and privacy disclaimer in the About section."
+  },
+  "agnOptionsFooterBuiltBy": {
+    "message": "zovo.one が開発",
+    "description": "Footer link in the options page."
+  },
+  "agnOptionsProLockLabel": {
+    "message": "Pro 機能、ロック中",
+    "description": "Accessible label for the Pro badge."
+  },
+  "agnOptionsProBadge": {
+    "message": "Pro",
+    "description": "Pro badge text."
+  },
+  "agnOptionsSrPro": {
+    "message": "Pro ライセンス有効。",
+    "description": "Screen-reader live region for the options page: Pro active."
+  },
+  "agnOptionsSrFree": {
+    "message": "無料プラン。",
+    "description": "Screen-reader live region for the options page: Free tier."
+  },
+  "agnOnbEyebrow": {
+    "message": "AltGenie",
+    "description": "Brand eyebrow shown at the top of every onboarding page."
+  },
+  "agnOnbPage1Heading": {
+    "message": "代替テキストを、あなたのブラウザが作成",
+    "description": "Onboarding page 1 main heading."
+  },
+  "agnOnbPage1Sub": {
+    "message": "任意の画像を右クリックすると、AltGenie が Chrome の組み込み AI を使って、短く WCAG に配慮した説明の下書きを作成します。ログイン不要、アップロード不要、クラウド不要。"
+  },
+  "agnOnbPage1Bullet1": {
+    "message": "オンデバイス。画像がブラウザから出ることはありません。"
+  },
+  "agnOnbPage1Bullet2": {
+    "message": "WCAG に配慮。短く、具体的で、正直な説明。"
+  },
+  "agnOnbPage1Bullet3": {
+    "message": "ログイン不要。API キー不要。開始にサブスクリプションは不要。"
+  },
+  "agnOnbPage1Button": {
+    "message": "仕組みを見る",
+    "description": "Primary CTA on onboarding page 1."
+  },
+  "agnOnbPage2Heading": {
+    "message": "3クリックで代替テキスト",
+    "description": "Onboarding page 2 main heading."
+  },
+  "agnOnbPage2Sub": {
+    "message": "任意のページの任意の画像から、どこにでも貼り付けられる編集可能な説明へ。"
+  },
+  "agnOnbPage2Step1Title": {
+    "message": "画像を右クリック"
+  },
+  "agnOnbPage2Step1Body": {
+    "message": "コンテキストメニューから「代替テキストを生成 (AltGenie)」を選択します。サイドパネルが開きます。"
+  },
+  "agnOnbPage2Step2Title": {
+    "message": "Chrome の AI が下書きを作成"
+  },
+  "agnOnbPage2Step2Body": {
+    "message": "Gemini Nano があなたのデバイス上で動作し、短い説明の下書きを作成します。アップロードもサーバーもありません。"
+  },
+  "agnOnbPage2Step3Title": {
+    "message": "編集、コピー、または書き戻し"
+  },
+  "agnOnbPage2Step3Body": {
+    "message": "テキストを調整したり、クリップボードにコピーしたり、画像の alt 属性に直接書き込んだりできます。"
+  },
+  "agnOnbPage2TryNow": {
+    "message": "サンプル画像で試す",
+    "description": "Secondary CTA on onboarding page 2."
+  },
+  "agnOnbPage2Next": {
+    "message": "続ける",
+    "description": "Primary CTA on onboarding page 2."
+  },
+  "agnOnbPage3Heading": {
+    "message": "あなた仕様に",
+    "description": "Onboarding page 3 main heading."
+  },
+  "agnOnbPage3Sub": {
+    "message": "2つの簡単な設定でほとんどのワークフローをカバーします。ポップアップまたはオプションページからいつでも変更できます。"
+  },
+  "agnOnbPage3AutoAuditLabel": {
+    "message": "ページを自動監査"
+  },
+  "agnOnbPage3AutoAuditValue": {
+    "message": "代替テキストがない画像のバッジカウント"
+  },
+  "agnOnbPage3ProTemplateLabel": {
+    "message": "プロンプトテンプレート"
+  },
+  "agnOnbPage3ProTemplateValue": {
+    "message": "Pro：Eコマース、編集、技術"
+  },
+  "agnOnbContinue": {
+    "message": "続ける",
+    "description": "Primary CTA used on multiple onboarding pages."
+  },
+  "agnOnbPage4Heading": {
+    "message": "こんにちは、Michael です",
+    "description": "Onboarding page 4 main heading (founder card)."
+  },
+  "agnOnbPage4Sub": {
+    "message": "AltGenie を作ったのは、締め切りが迫ると代替テキストを手書きすることが真っ先に後回しになるからです。あなたのデバイス上で動作し、画像を見ることも、何かをアップロードすることも決してありません。"
+  },
+  "agnOnbPage4SubMuted": {
+    "message": "ひとりで、公開しながら開発中"
+  },
+  "agnOnbPage5Heading": {
+    "message": "無料版はずっと使えます。Pro は本格的なワークフローに。",
+    "description": "Onboarding page 5 main heading (pricing)."
+  },
+  "agnOnbPage5Sub": {
+    "message": "無料版は日常的な代替テキスト生成をカバーします。Pro は編集者、マーケター、アクセシビリティ監査向けです。"
+  },
+  "agnOnbPage5FreeBadge": {
+    "message": "無料"
+  },
+  "agnOnbPage5FreePrice": {
+    "message": "無料"
+  },
+  "agnOnbPage5FreeBullet1": {
+    "message": "単一画像の無制限生成"
+  },
+  "agnOnbPage5FreeBullet2": {
+    "message": "バッジカウント付きの自動監査"
+  },
+  "agnOnbPage5FreeBullet3": {
+    "message": "デフォルトの WCAG 配慮プロンプトテンプレート"
+  },
+  "agnOnbPage5ProBadge": {
+    "message": "Pro"
+  },
+  "agnOnbPage5ProPrice": {
+    "message": "$$4.99/月 または $$99 買い切り"
+  },
+  "agnOnbPage5ProBullet1": {
+    "message": "Eコマース、編集、技術のプロンプトテンプレート"
+  },
+  "agnOnbPage5ProBullet2": {
+    "message": "検索機能付きのローカル生成履歴"
+  },
+  "agnOnbPage5ProBullet3": {
+    "message": "履歴を CSV と JSON にエクスポート"
+  },
+  "agnOnbPage5ProBullet4": {
+    "message": "自動監査したページで一括「すべて書き込み」"
+  },
+  "agnOnbPage5ProCta": {
+    "message": "Pro プランを見る"
+  },
+  "agnOnbPage5FreeCta": {
+    "message": "無料版のまま使う"
+  },
+  "agnOnbPage5Refund": {
+    "message": "14日間の返金保証。Pro に価値がないと感じたら、理由を問わず返金します。"
+  },
+  "agnOnbPage6Heading": {
+    "message": "準備完了です",
+    "description": "Onboarding page 6 main heading (sign-off)."
+  },
+  "agnOnbPage6Sub": {
+    "message": "任意の画像を右クリックして「代替テキストを生成 (AltGenie)」を選択します。最初の下書きはワンクリックで。"
+  },
+  "agnOnbPage6Button": {
+    "message": "AltGenie を使い始める",
+    "description": "Primary CTA on onboarding page 6."
+  },
+  "agnOnbSkip": {
+    "message": "セットアップをスキップ",
+    "description": "Skip link in the onboarding footer."
+  },
+  "agnOnbBack": {
+    "message": "戻る",
+    "description": "Back button in the onboarding footer."
+  },
+  "agnOnbNext": {
+    "message": "次へ",
+    "description": "Next button in the onboarding footer."
+  },
+  "agnOnbDone": {
+    "message": "完了",
+    "description": "Done button in the onboarding footer (final page)."
+  },
+  "agnOnbStepAriaLabel": {
+    "message": "オンボーディングの手順",
+    "description": "Accessible label for the onboarding step indicator."
+  },
+  "agnOnbStepPositionAriaLabel": {
+    "message": "ステップ $1",
+    "description": "Accessible label for an individual step dot. $1 is the 1-based page index.",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "agnOnbProgressAriaLabel": {
+    "message": "オンボーディングの進捗",
+    "description": "Accessible label for the progress indicator."
+  },
+  "agnOnbPageOf": {
+    "message": "$2 中 $1",
+    "description": "Page indicator text in the onboarding footer. $1 is current page, $2 is total pages.",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "agnOnbFooterBrand": {
+    "message": "zovo.one が開発",
+    "description": "Brand link in the onboarding footer."
+  },
+  "agnPanelHeaderTitle": {
+    "message": "AltGenie",
+    "description": "Side panel header brand wordmark."
+  },
+  "agnPanelFooterBrand": {
+    "message": "zovo.one が開発",
+    "description": "Side panel footer brand link text."
+  },
+  "agnPanelStateLoading": {
+    "message": "読み込み中...",
+    "description": "Side panel loading-state label before bootstrap completes."
+  },
+  "agnPanelStateChecking": {
+    "message": "デバイスのオンデバイス AI を確認中...",
+    "description": "Side panel PENDING / AVAILABILITY_CHECK state label."
+  },
+  "agnPanelStatePreparing": {
+    "message": "生成の準備中...",
+    "description": "Side panel MODEL_READY state label."
+  },
+  "agnPanelStateGenerating": {
+    "message": "代替テキストを生成中...",
+    "description": "Side panel GENERATING state label."
+  },
+  "agnPanelStateIdleTitle": {
+    "message": "画像が選択されていません",
+    "description": "Side panel IDLE state title."
+  },
+  "agnPanelStateIdleBody": {
+    "message": "ウェブページ上の任意の画像を右クリックして「代替テキストを生成 (AltGenie)」を選択してください。",
+    "description": "Side panel IDLE state body."
+  },
+  "agnPanelStateIdlePrivate": {
+    "message": "すべてが Chrome の組み込み AI によりオンデバイスで動作します。ログイン不要、アップロード不要、クラウド不要。",
+    "description": "Side panel IDLE state privacy reminder."
+  },
+  "agnPanelAuditCount": {
+    "message": "このページで代替テキストがない画像 ($1)",
+    "description": "Side panel audit-list card heading. $1 is the number of missing images.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "agnPanelAuditHidden": {
+    "message": "（非表示）",
+    "description": "Inline marker for off-screen images in the audit list."
+  },
+  "agnPanelAuditGenerate": {
+    "message": "生成",
+    "description": "Side panel audit-list row button."
+  },
+  "agnPanelDownloadTitle": {
+    "message": "オンデバイスモデルをダウンロード",
+    "description": "Side panel MODEL_DOWNLOADABLE state title."
+  },
+  "agnPanelDownloadBody": {
+    "message": "AltGenie は Chrome の組み込み AI (Gemini Nano) を使用します。初回にモデル（約 1.5 GB）のダウンロードが必要です。ダウンロード後は、すべての生成があなたのデバイス上で行われます。",
+    "description": "Side panel MODEL_DOWNLOADABLE state body."
+  },
+  "agnPanelDownloadButton": {
+    "message": "モデルをダウンロード",
+    "description": "Side panel MODEL_DOWNLOADABLE state primary button."
+  },
+  "agnPanelDownloadFootnote": {
+    "message": "デスクトップ版 Chrome 127+ と約 1.5 GB の空きディスクが必要です。",
+    "description": "Side panel MODEL_DOWNLOADABLE state footnote."
+  },
+  "agnPanelDownloadingTitle": {
+    "message": "モデルをダウンロード中...",
+    "description": "Side panel MODEL_DOWNLOADING state title."
+  },
+  "agnPanelDownloadingStatus": {
+    "message": "$1% — お使いのデバイスが Gemini Nano をダウンロードしています。このパネルは開いたままにできます。",
+    "description": "Side panel MODEL_DOWNLOADING state status line. $1 is the integer percentage.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "42"
+      }
+    }
+  },
+  "agnPanelUnavailableTitle": {
+    "message": "オンデバイス AI が利用できません",
+    "description": "Side panel UNAVAILABLE state title."
+  },
+  "agnPanelUnavailableBody": {
+    "message": "AltGenie には Chrome の組み込み AI (Prompt API) が必要で、以下が求められます："
+  },
+  "agnPanelUnavailableBullet1": {
+    "message": "デスクトップ版 Chrome 127 以降"
+  },
+  "agnPanelUnavailableBullet2": {
+    "message": "新しめのハードウェア（モデルは約 1.5 GB）"
+  },
+  "agnPanelUnavailableBullet3": {
+    "message": "chrome://flags で Prompt API を有効化"
+  },
+  "agnPanelUnavailableLink": {
+    "message": "chrome://flags/#prompt-api-for-gemini-nano を開く",
+    "description": "Side panel UNAVAILABLE state link to the chrome://flags anchor."
+  },
+  "agnPanelUnavailableFootnote": {
+    "message": "AltGenie が画像をアップロードすることは決してありません。オンデバイス AI が利用できない場合、サーバー側のフォールバックはありません。"
+  },
+  "agnPanelErrorCors": {
+    "message": "CORS なしではクロスオリジン画像を読み取れません。このサイトはクロスオリジン読み取りを許可していません。",
+    "description": "Side panel ERROR state message when image fetch is blocked by CORS."
+  },
+  "agnPanelErrorGeneric": {
+    "message": "問題が発生しました。",
+    "description": "Side panel ERROR state fallback message."
+  },
+  "agnPanelErrorImageUrl": {
+    "message": "画像 URL：$1",
+    "description": "Side panel ERROR state image-URL line. $1 is the URL.",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://example.com/photo.png"
+      }
+    }
+  },
+  "agnPanelErrorCopyUrl": {
+    "message": "画像 URL をコピー",
+    "description": "Side panel ERROR state button (CORS-only)."
+  },
+  "agnPanelErrorRetry": {
+    "message": "再試行",
+    "description": "Side panel ERROR state retry button."
+  },
+  "agnPanelErrorDismiss": {
+    "message": "閉じる",
+    "description": "Side panel ERROR state dismiss button."
+  },
+  "agnPanelResultPreviewAlt": {
+    "message": "右クリックした画像",
+    "description": "Alt text for the result-view preview thumbnail."
+  },
+  "agnPanelResultLabel": {
+    "message": "生成された代替テキスト（必要に応じて編集）：",
+    "description": "Side panel RESULT state textarea label."
+  },
+  "agnPanelResultCharcount": {
+    "message": "$1 / 125",
+    "description": "Side panel RESULT state character counter. $1 is the current character count.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "87"
+      }
+    }
+  },
+  "agnPanelResultOverbudget": {
+    "message": "（上限超過）",
+    "description": "Side panel RESULT state over-budget marker appended to the char count."
+  },
+  "agnPanelResultCopy": {
+    "message": "クリップボードにコピー",
+    "description": "Side panel RESULT state copy button."
+  },
+  "agnPanelResultWrite": {
+    "message": "画像に書き込む",
+    "description": "Side panel RESULT state write-to-alt button."
+  },
+  "agnPanelResultRegenerate": {
+    "message": "再生成",
+    "description": "Side panel RESULT state regenerate button."
+  },
+  "agnPanelResultWriteStatus": {
+    "message": "書き込みを試みました。画像が保護されたページ上にある場合、テキストは代わりにクリップボードにコピーされました。",
+    "description": "Side panel RESULT state status line after a write attempt."
+  },
+  "agnActionCopy": {
+    "message": "コピー",
+    "description": "Generic 'Copy' action label."
+  },
+  "agnActionRegenerate": {
+    "message": "再生成",
+    "description": "Generic 'Regenerate' action label."
+  },
+  "agnActionWrite": {
+    "message": "書き込む",
+    "description": "Generic 'Write' action label."
+  },
+  "agnActionSave": {
+    "message": "保存",
+    "description": "Generic 'Save' action label."
+  },
+  "agnActionCancel": {
+    "message": "キャンセル",
+    "description": "Generic 'Cancel' action label."
+  },
+  "agnActionRetry": {
+    "message": "再試行",
+    "description": "Generic 'Retry' action label."
+  },
+  "agnActionOpen": {
+    "message": "開く",
+    "description": "Generic 'Open' action label."
+  },
+  "agnActionClose": {
+    "message": "閉じる",
+    "description": "Generic 'Close' action label."
+  },
+  "agnActionNext": {
+    "message": "次へ",
+    "description": "Generic 'Next' action label."
+  },
+  "agnActionBack": {
+    "message": "戻る",
+    "description": "Generic 'Back' action label."
+  },
+  "agnActionFinish": {
+    "message": "完了",
+    "description": "Generic 'Finish' action label."
+  }
+}

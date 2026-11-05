@@ -1,0 +1,839 @@
+{
+  "extName": {
+    "message": "AltGenie — piltide alt-teksti generaator, WCAG-sõbralik ja seadmes",
+    "description": "Extension name shown in chrome://extensions and the Chrome Web Store listing title."
+  },
+  "extDesc": {
+    "message": "Tee mis tahes pildil paremklõps, et saada WCAG-sõbralik alt-tekst. Privaatne, ilma sisselogimiseta, ilma API-võtmeta, ilma pilveta. Kasutab Chrome'i sisseehitatud tehisintellekti.",
+    "description": "Extension description shown in chrome://extensions and the Chrome Web Store listing short summary (≤132 chars)."
+  },
+  "actionTitle": {
+    "message": "AltGenie",
+    "description": "Tooltip for the toolbar action icon."
+  },
+  "permContextMenusJustification": {
+    "message": "Registreerib piltidel paremklõpsu menüü 'Loo alt-tekst'. Kasutaja klõps on selgesõnaline žest, mis lubab ühe pildi töötlemise.",
+    "description": "CWS reviewer justification for the contextMenus permission."
+  },
+  "permActiveTabJustification": {
+    "message": "Antakse kasutaja žesti (paremklõps või klõps märgil) alusel ja lubab lehe auditi. Ei nõua host_permissions.",
+    "description": "CWS reviewer justification for the activeTab permission."
+  },
+  "permScriptingJustification": {
+    "message": "Võimaldab dünaamilise executeScript'i auditi jaoks ja loodud alt-teksti kirjutamiseks. Staatilisi content script'e ei ole.",
+    "description": "CWS reviewer justification for the scripting permission."
+  },
+  "permSidePanelJustification": {
+    "message": "Avab külgpaneeli, kus töötab seadmes olev LanguageModel. Prompt API ei ole service worker'is saadaval.",
+    "description": "CWS reviewer justification for the sidePanel permission."
+  },
+  "permStorageJustification": {
+    "message": "Säilitab kasutaja eelistused (auditi lüliti, ajaloo salvestamise lüliti, viiba mall). Vaikimisi ei salvestata ühtegi pildibaiti ega loodud teksti.",
+    "description": "CWS reviewer justification for the storage permission."
+  },
+  "agnPopupTitle": {
+    "message": "AltGenie",
+    "description": "Brand wordmark shown in the popup header and used as the popup document title."
+  },
+  "agnPopupBuiltBy": {
+    "message": "Loonud zovo.one",
+    "description": "Small link in the popup header pointing to the publisher homepage."
+  },
+  "agnPopupHintAriaLabel": {
+    "message": "Kuidas AltGenie't kasutada",
+    "description": "Accessible label for the popup hint section."
+  },
+  "agnPopupHintBody": {
+    "message": "Tee mis tahes lehel pildil paremklõps ja vali 'Loo alt-tekst (AltGenie)'. Kõik töötab sinu seadmes.",
+    "description": "Short reminder shown in the popup body that describes the single user gesture."
+  },
+  "agnPopupSettingsAriaLabel": {
+    "message": "AltGenie seaded",
+    "description": "Accessible label for the popup settings list."
+  },
+  "agnPopupAutoAuditTitle": {
+    "message": "Auditeeri seda lehte automaatselt",
+    "description": "Popup toggle label: enables the page audit on the active tab."
+  },
+  "agnPopupAutoAuditSub": {
+    "message": "Lisab märgile alt-tekstita piltide arvu. Lehe sisu ei lahku sinu seadmest.",
+    "description": "Popup toggle subtext explaining what auto-audit does."
+  },
+  "agnPopupShowBadgeTitle": {
+    "message": "Näita märki",
+    "description": "Popup toggle label: shows or hides the toolbar badge count."
+  },
+  "agnPopupShowBadgeSub": {
+    "message": "Praegusel vahekaardil alt-tekstita piltide passiivne loendus.",
+    "description": "Popup toggle subtext explaining the badge."
+  },
+  "agnPopupActionsAriaLabel": {
+    "message": "AltGenie toimingud",
+    "description": "Accessible label for the popup action buttons."
+  },
+  "agnPopupOpenSidePanel": {
+    "message": "Ava külgpaneel",
+    "description": "Popup button: opens the Chrome side panel where generation runs."
+  },
+  "agnPopupOpening": {
+    "message": "Avamine...",
+    "description": "Popup button busy state while the side panel is opening."
+  },
+  "agnPopupOpenOptions": {
+    "message": "Ava seaded",
+    "description": "Popup button: opens the full options page."
+  },
+  "agnPopupUpgradeEyebrow": {
+    "message": "Zovo Pro",
+    "description": "Eyebrow label on the popup upgrade CTA (free-tier only)."
+  },
+  "agnPopupUpgradeTitle": {
+    "message": "Ava viibamallid ja ajalugu",
+    "description": "Title on the popup upgrade CTA (free-tier only)."
+  },
+  "agnPopupFooterBrand": {
+    "message": "zovo.one",
+    "description": "Footer brand link in the popup."
+  },
+  "agnPopupFooterPrivacy": {
+    "message": "Privaatsus",
+    "description": "Footer privacy-policy link in the popup."
+  },
+  "agnPopupFooterDisclaimer": {
+    "message": "Ei ole seotud Google'i ega Chrome'iga. AltGenie kasutab Chrome'i sisseehitatud tehisintellekti; sinu pildid jäävad sinu seadmesse.",
+    "description": "Footer disclaimer in the popup clarifying the independence from Google."
+  },
+  "agnPopupSrPro": {
+    "message": "Pro litsents aktiivne.",
+    "description": "Screen-reader live region: Pro tier active."
+  },
+  "agnPopupSrFree": {
+    "message": "Tasuta tase.",
+    "description": "Screen-reader live region: Free tier active."
+  },
+  "agnPopupNoTab": {
+    "message": "Aktiivset vahekaarti ei leitud. Ava leht ja proovi uuesti.",
+    "description": "Popup error when the side panel cannot be opened because no active tab is available."
+  },
+  "agnPopupSidePanelError": {
+    "message": "Külgpaneeli ei õnnestunud avada. Proovi uuesti või ava see aadressilt chrome://extensions.",
+    "description": "Popup error when chrome.sidePanel.open fails."
+  },
+  "agnOptionsNavAriaLabel": {
+    "message": "AltGenie seadete navigeerimine",
+    "description": "Accessible label for the options sidebar navigation."
+  },
+  "agnOptionsSidebarFooter": {
+    "message": "Loonud zovo.one",
+    "description": "Footer link in the options sidebar."
+  },
+  "agnOptionsNav_general": {
+    "message": "Üldine",
+    "description": "Sidebar nav label for the General section."
+  },
+  "agnOptionsNav_auto_audit": {
+    "message": "Automaataudit",
+    "description": "Sidebar nav label for the Auto-audit section."
+  },
+  "agnOptionsNav_license": {
+    "message": "Pro litsents",
+    "description": "Sidebar nav label for the Pro License section."
+  },
+  "agnOptionsNav_data": {
+    "message": "Andmed",
+    "description": "Sidebar nav label for the Data section."
+  },
+  "agnOptionsNav_about": {
+    "message": "Teave",
+    "description": "Sidebar nav label for the About section."
+  },
+  "agnOptionsEyebrowGeneral": {
+    "message": "Üldine",
+    "description": "Eyebrow label for the General section."
+  },
+  "agnOptionsTitleGeneral": {
+    "message": "Kuidas AltGenie kuvatakse",
+    "description": "Title for the General section."
+  },
+  "agnOptionsSubGeneral": {
+    "message": "Vali, kas märgi loendus on nähtav ja kas lehti auditeeritakse automaatselt.",
+    "description": "Subtitle for the General section."
+  },
+  "agnOptionsShowBadgeTitle": {
+    "message": "Näita märgi loendust",
+    "description": "Options toggle: show or hide the toolbar badge."
+  },
+  "agnOptionsShowBadgeSub": {
+    "message": "Praegusel vahekaardil alt-tekstita piltide passiivne loendus.",
+    "description": "Options toggle subtext for the badge."
+  },
+  "agnOptionsAutoAuditTitle": {
+    "message": "Auditeeri lehti külastamisel automaatselt",
+    "description": "Options toggle: enables automatic audit on page load."
+  },
+  "agnOptionsAutoAuditSub": {
+    "message": "Lisab aktiivsel vahekaardil märgile alt-tekstita piltide arvu. Lehe sisu ei lahku sinu seadmest.",
+    "description": "Options toggle subtext for auto-audit."
+  },
+  "agnOptionsPromptTemplateLabel": {
+    "message": "Viiba mall",
+    "description": "Options label for the prompt-template dropdown."
+  },
+  "agnOptionsPromptTemplateDefault": {
+    "message": "Vaikeväärtus (WCAG-sõbralik)",
+    "description": "Options dropdown option: the default prompt template."
+  },
+  "agnOptionsPromptTemplateEcommerce": {
+    "message": "E-kaubandus (tootepõhine)",
+    "description": "Options dropdown option: e-commerce prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateNews": {
+    "message": "Toimetuslik (uudised ja artiklid)",
+    "description": "Options dropdown option: editorial prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateTechnical": {
+    "message": "Tehniline (graafikud ja diagrammid)",
+    "description": "Options dropdown option: technical prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateLockedHint": {
+    "message": "Pro-mallid avanevad Zovo Pro litsentsiga.",
+    "description": "Options dropdown hint for locked Pro templates."
+  },
+  "agnOptionsThemeLabel": {
+    "message": "Teema",
+    "description": "Options label for the theme segmented control."
+  },
+  "agnOptionsThemeSystem": {
+    "message": "Süsteem",
+    "description": "Options theme choice: follow the OS setting."
+  },
+  "agnOptionsThemeLight": {
+    "message": "Hele",
+    "description": "Options theme choice: force light."
+  },
+  "agnOptionsThemeDark": {
+    "message": "Tume",
+    "description": "Options theme choice: force dark."
+  },
+  "agnOptionsThemeAriaLabel": {
+    "message": "Teema eelistus",
+    "description": "Accessible radiogroup label for the theme segmented control."
+  },
+  "agnOptionsEyebrowAutoAudit": {
+    "message": "Automaataudit",
+    "description": "Eyebrow label for the Auto-audit section."
+  },
+  "agnOptionsTitleAutoAudit": {
+    "message": "Auditeeri lehti puuduva alt-teksti suhtes",
+    "description": "Title for the Auto-audit section."
+  },
+  "agnOptionsAutoAuditExplainer": {
+    "message": "Audit loeb lehe pildielemente, et lugeda kokku, mitmel puudub alt-tekst. Audit töötab seadmes dünaamilise skriptimise kaudu; lehe sisu ei saadeta kuhugi.",
+    "description": "Long-form explainer under the Auto-audit section title."
+  },
+  "agnOptionsSaveHistoryTitle": {
+    "message": "Salvesta loomise ajalugu kohalikult",
+    "description": "Options toggle: store past generated alt texts in chrome.storage.local."
+  },
+  "agnOptionsSaveHistorySub": {
+    "message": "Vaikimisi väljas. Sisselülitatuna salvestatakse loodud tekst ainult sellesse seadmesse. Saad selle igal ajal jaotisest Andmed kustutada.",
+    "description": "Options toggle subtext for save-history."
+  },
+  "agnOptionsAutoAuditNote": {
+    "message": "Automaataudit ei saada kunagi lehe sisu ühessegi serverisse. Loendused jäävad sellesse seadmesse.",
+    "description": "Informational note under the Auto-audit section."
+  },
+  "agnOptionsEyebrowLicense": {
+    "message": "Litsents",
+    "description": "Eyebrow label for the Pro License section."
+  },
+  "agnOptionsTitleLicense": {
+    "message": "Aktiveeri või eemalda Zovo Pro võti",
+    "description": "Title for the Pro License section."
+  },
+  "agnOptionsSubLicense": {
+    "message": "Pro litsents avab viibamallid, kohaliku ajaloo ja ekspordi. Üks makse või üks tellimus; aktiveerib Pro selles laienduses igaveseks.",
+    "description": "Subtitle for the Pro License section."
+  },
+  "agnOptionsLicenseActivePrefix": {
+    "message": "Pro aktiivne.",
+    "description": "Prefix shown when a Pro license is active."
+  },
+  "agnOptionsLicenseActiveValidThrough": {
+    "message": "Kehtib kuni $1.",
+    "description": "License status line showing the expiry date. $1 is a localized date string.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "December 31, 2026"
+      }
+    }
+  },
+  "agnOptionsLicenseActiveLifetime": {
+    "message": "Eluaegne litsents.",
+    "description": "License status line for a lifetime license."
+  },
+  "agnOptionsLicenseDeactivate": {
+    "message": "Deaktiveeri",
+    "description": "Button: deactivate the current license."
+  },
+  "agnOptionsLicenseDeactivated": {
+    "message": "Litsents deaktiveeritud. Tagasi tasuta tasemel.",
+    "description": "Status message after the user deactivates a license."
+  },
+  "agnOptionsLicenseKeyLabel": {
+    "message": "Litsentsivõti",
+    "description": "Accessible label for the license-key input."
+  },
+  "agnOptionsLicensePlaceholder": {
+    "message": "ZOVO-XXXX-XXXX-XXXX-XXXX",
+    "description": "Placeholder text for the license-key input."
+  },
+  "agnOptionsLicenseActivate": {
+    "message": "Aktiveeri",
+    "description": "Button: activate the entered license key."
+  },
+  "agnOptionsLicenseVerifying": {
+    "message": "Kontrollimine...",
+    "description": "Button busy state while the license key is being verified."
+  },
+  "agnOptionsLicenseEmpty": {
+    "message": "Sisesta esmalt litsentsivõti.",
+    "description": "Error shown when activating with an empty input."
+  },
+  "agnOptionsLicenseActivated": {
+    "message": "Litsents aktiveeritud. Pro avatud.",
+    "description": "Success message after activation."
+  },
+  "agnOptionsLicenseFailed": {
+    "message": "Seda võtit ei õnnestunud kontrollida. Kontrolli võtit ja proovi uuesti.",
+    "description": "Error shown when the license server rejects the key."
+  },
+  "agnOptionsLicenseError": {
+    "message": "Kontrollimine ebaõnnestus. Proovi hetke pärast uuesti.",
+    "description": "Error shown when the license verify endpoint is unreachable."
+  },
+  "agnOptionsLicenseBuy": {
+    "message": "Vaata Pro pakette",
+    "description": "Link to the pricing page."
+  },
+  "agnOptionsLicenseRefund": {
+    "message": "14-päevane raha-tagasi garantii. Kui Pro ei ole seda väärt, maksame raha tagasi, küsimusteta.",
+    "description": "Refund promise under the Pro License section."
+  },
+  "agnOptionsEyebrowData": {
+    "message": "Andmed",
+    "description": "Eyebrow label for the Data section."
+  },
+  "agnOptionsTitleData": {
+    "message": "Sinu andmed jäävad sellesse seadmesse",
+    "description": "Title for the Data section."
+  },
+  "agnOptionsSubData": {
+    "message": "Ekspordi või kustuta kõik, mille AltGenie on sellesse seadmesse salvestanud. Ilma pilveta, ilma sünkroonimiseta.",
+    "description": "Subtitle for the Data section."
+  },
+  "agnOptionsDataExport": {
+    "message": "Ekspordi minu andmed",
+    "description": "Button: export stored preferences and any saved history to a JSON file."
+  },
+  "agnOptionsDataDelete": {
+    "message": "Kustuta kõik andmed",
+    "description": "Button: delete everything AltGenie has stored on this device."
+  },
+  "agnOptionsPrivacyExportOk": {
+    "message": "Eksporditi $1 võti/võtit sinu allalaadimistesse.",
+    "description": "Success message after exporting data. $1 is the number of storage keys written.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "agnOptionsPrivacyExportErr": {
+    "message": "Eksport ebaõnnestus. Palun proovi uuesti.",
+    "description": "Error shown when the export download fails."
+  },
+  "agnOptionsPrivacyDeleteConfirm": {
+    "message": "Kas kustutada kõik AltGenie andmed sellest seadmest? Seda ei saa tagasi võtta.",
+    "description": "window.confirm prompt before deleting all data."
+  },
+  "agnOptionsPrivacyDeleteOk": {
+    "message": "Kõik AltGenie andmed on sellest seadmest kustutatud.",
+    "description": "Success message after deleting all data."
+  },
+  "agnOptionsPrivacyDeleteErr": {
+    "message": "Kustutamine ebaõnnestus. Palun proovi uuesti.",
+    "description": "Error shown when the delete operation fails."
+  },
+  "agnOptionsEyebrowAbout": {
+    "message": "Teave",
+    "description": "Eyebrow label for the About section."
+  },
+  "agnOptionsTitleAbout": {
+    "message": "Teave AltGenie kohta",
+    "description": "Title for the About section."
+  },
+  "agnOptionsAboutVersion": {
+    "message": "Versioon",
+    "description": "Label preceding the version number in the About section."
+  },
+  "agnOptionsAboutBuiltBy": {
+    "message": "Loonud",
+    "description": "Label preceding the publisher link in the About section."
+  },
+  "agnOptionsAboutPrivacy": {
+    "message": "Privaatsuspoliitika",
+    "description": "Link to the privacy policy in the About section."
+  },
+  "agnOptionsAboutSource": {
+    "message": "Lähtekood",
+    "description": "Link to the public source repository in the About section."
+  },
+  "agnOptionsAboutDisclaimer": {
+    "message": "AltGenie on Zovo sõltumatu tööriist. Ei ole seotud Google'i ega Chrome'iga. AltGenie kasutab Chrome'i sisseehitatud tehisintellekti (Gemini Nano), mis töötab sinu seadmes; sinu pilte ei laadita kunagi üles.",
+    "description": "Independence and privacy disclaimer in the About section."
+  },
+  "agnOptionsFooterBuiltBy": {
+    "message": "Loonud zovo.one",
+    "description": "Footer link in the options page."
+  },
+  "agnOptionsProLockLabel": {
+    "message": "Pro funktsioon, lukustatud",
+    "description": "Accessible label for the Pro badge."
+  },
+  "agnOptionsProBadge": {
+    "message": "Pro",
+    "description": "Pro badge text."
+  },
+  "agnOptionsSrPro": {
+    "message": "Pro litsents aktiivne.",
+    "description": "Screen-reader live region for the options page: Pro active."
+  },
+  "agnOptionsSrFree": {
+    "message": "Tasuta tase.",
+    "description": "Screen-reader live region for the options page: Free tier."
+  },
+  "agnOnbEyebrow": {
+    "message": "AltGenie",
+    "description": "Brand eyebrow shown at the top of every onboarding page."
+  },
+  "agnOnbPage1Heading": {
+    "message": "Alt-tekst, mille kirjutab sinu brauser",
+    "description": "Onboarding page 1 main heading."
+  },
+  "agnOnbPage1Sub": {
+    "message": "Tee pildil paremklõps ja AltGenie koostab Chrome'i sisseehitatud tehisintellektiga lühikese WCAG-sõbraliku kirjelduse. Ilma sisselogimiseta, ilma üleslaadimiseta, ilma pilveta."
+  },
+  "agnOnbPage1Bullet1": {
+    "message": "Seadmes. Sinu pildid ei lahku kunagi brauserist."
+  },
+  "agnOnbPage1Bullet2": {
+    "message": "WCAG-sõbralik. Lühikesed, täpsed, ausad kirjeldused."
+  },
+  "agnOnbPage1Bullet3": {
+    "message": "Ilma sisselogimiseta. Ilma API-võtmeta. Alustamiseks pole tellimust vaja."
+  },
+  "agnOnbPage1Button": {
+    "message": "Vaata, kuidas see töötab",
+    "description": "Primary CTA on onboarding page 1."
+  },
+  "agnOnbPage2Heading": {
+    "message": "Kolm klõpsu alt-tekstini",
+    "description": "Onboarding page 2 main heading."
+  },
+  "agnOnbPage2Sub": {
+    "message": "Mis tahes lehel olevast mis tahes pildist redigeeritava kirjelduseni, mille saad kõikjale kleepida."
+  },
+  "agnOnbPage2Step1Title": {
+    "message": "Tee pildil paremklõps"
+  },
+  "agnOnbPage2Step1Body": {
+    "message": "Vali kontekstimenüüst 'Loo alt-tekst (AltGenie)'. Külgpaneel avaneb."
+  },
+  "agnOnbPage2Step2Title": {
+    "message": "Chrome'i tehisintellekt koostab mustandi"
+  },
+  "agnOnbPage2Step2Body": {
+    "message": "Gemini Nano töötab sinu seadmes ja koostab lühikese kirjelduse. Ilma üleslaadimiseta, ilma serverita."
+  },
+  "agnOnbPage2Step3Title": {
+    "message": "Redigeeri, kopeeri või kirjuta tagasi"
+  },
+  "agnOnbPage2Step3Body": {
+    "message": "Kohenda teksti, kopeeri see lõikelauale või kirjuta otse pildi alt-atribuuti."
+  },
+  "agnOnbPage2TryNow": {
+    "message": "Proovi seda näidispildil",
+    "description": "Secondary CTA on onboarding page 2."
+  },
+  "agnOnbPage2Next": {
+    "message": "Jätka",
+    "description": "Primary CTA on onboarding page 2."
+  },
+  "agnOnbPage3Heading": {
+    "message": "Muuda see enda omaks",
+    "description": "Onboarding page 3 main heading."
+  },
+  "agnOnbPage3Sub": {
+    "message": "Kaks kiiret seadet katavad enamiku töövoogudest. Muuda neid igal ajal hüpikaknast või valikute lehelt."
+  },
+  "agnOnbPage3AutoAuditLabel": {
+    "message": "Auditeeri lehti automaatselt"
+  },
+  "agnOnbPage3AutoAuditValue": {
+    "message": "Alt-tekstita piltide arv märgil"
+  },
+  "agnOnbPage3ProTemplateLabel": {
+    "message": "Viibamallid"
+  },
+  "agnOnbPage3ProTemplateValue": {
+    "message": "Pro: e-kaubandus, toimetuslik, tehniline"
+  },
+  "agnOnbContinue": {
+    "message": "Jätka",
+    "description": "Primary CTA used on multiple onboarding pages."
+  },
+  "agnOnbPage4Heading": {
+    "message": "Tere, mina olen Michael",
+    "description": "Onboarding page 4 main heading (founder card)."
+  },
+  "agnOnbPage4Sub": {
+    "message": "Ehitasin AltGenie, sest alt-teksti käsitsi kirjutamine on esimene asi, mis tähtaegade lähenedes ära jääb. See töötab sinu seadmes, ei näe kunagi sinu pilte ega laadi midagi üles."
+  },
+  "agnOnbPage4SubMuted": {
+    "message": "Üks inimene, kes ehitab avalikult siin:"
+  },
+  "agnOnbPage5Heading": {
+    "message": "Tasuta versioon töötab igavesti. Pro sobib päris töövoosse.",
+    "description": "Onboarding page 5 main heading (pricing)."
+  },
+  "agnOnbPage5Sub": {
+    "message": "Tasuta versioon katab igapäevase alt-teksti loomise. Pro on toimetajatele, turundajatele ja ligipääsetavuse auditeerijatele."
+  },
+  "agnOnbPage5FreeBadge": {
+    "message": "Tasuta"
+  },
+  "agnOnbPage5FreePrice": {
+    "message": "Tasuta"
+  },
+  "agnOnbPage5FreeBullet1": {
+    "message": "Piiramatu üksikpildi loomine"
+  },
+  "agnOnbPage5FreeBullet2": {
+    "message": "Automaataudit märgi loendusega"
+  },
+  "agnOnbPage5FreeBullet3": {
+    "message": "Vaikimisi WCAG-sõbralik viiba mall"
+  },
+  "agnOnbPage5ProBadge": {
+    "message": "Pro"
+  },
+  "agnOnbPage5ProPrice": {
+    "message": "$$4.99/kuus või $$99 eluaegne"
+  },
+  "agnOnbPage5ProBullet1": {
+    "message": "E-kaubanduse, toimetuslikud ja tehnilised viibamallid"
+  },
+  "agnOnbPage5ProBullet2": {
+    "message": "Kohalik loomise ajalugu otsinguga"
+  },
+  "agnOnbPage5ProBullet3": {
+    "message": "Ajaloo eksport CSV- ja JSON-vormingusse"
+  },
+  "agnOnbPage5ProBullet4": {
+    "message": "Hulgi 'kirjuta kõik' automaatselt auditeeritud lehtedel"
+  },
+  "agnOnbPage5ProCta": {
+    "message": "Vaata Pro pakette"
+  },
+  "agnOnbPage5FreeCta": {
+    "message": "Jää tasuta versioonile"
+  },
+  "agnOnbPage5Refund": {
+    "message": "14-päevane raha-tagasi garantii. Kui Pro ei ole seda väärt, maksame raha tagasi, küsimusteta."
+  },
+  "agnOnbPage6Heading": {
+    "message": "Oled valmis",
+    "description": "Onboarding page 6 main heading (sign-off)."
+  },
+  "agnOnbPage6Sub": {
+    "message": "Tee pildil paremklõps ja vali 'Loo alt-tekst (AltGenie)'. Esimene mustand on ühe klõpsu kaugusel."
+  },
+  "agnOnbPage6Button": {
+    "message": "Hakka AltGenie't kasutama",
+    "description": "Primary CTA on onboarding page 6."
+  },
+  "agnOnbSkip": {
+    "message": "Jäta seadistus vahele",
+    "description": "Skip link in the onboarding footer."
+  },
+  "agnOnbBack": {
+    "message": "Tagasi",
+    "description": "Back button in the onboarding footer."
+  },
+  "agnOnbNext": {
+    "message": "Edasi",
+    "description": "Next button in the onboarding footer."
+  },
+  "agnOnbDone": {
+    "message": "Valmis",
+    "description": "Done button in the onboarding footer (final page)."
+  },
+  "agnOnbStepAriaLabel": {
+    "message": "Sissejuhatuse sammud",
+    "description": "Accessible label for the onboarding step indicator."
+  },
+  "agnOnbStepPositionAriaLabel": {
+    "message": "Samm $1",
+    "description": "Accessible label for an individual step dot. $1 is the 1-based page index.",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "agnOnbProgressAriaLabel": {
+    "message": "Sissejuhatuse edenemine",
+    "description": "Accessible label for the progress indicator."
+  },
+  "agnOnbPageOf": {
+    "message": "$1 / $2",
+    "description": "Page indicator text in the onboarding footer. $1 is current page, $2 is total pages.",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "agnOnbFooterBrand": {
+    "message": "Loonud zovo.one",
+    "description": "Brand link in the onboarding footer."
+  },
+  "agnPanelHeaderTitle": {
+    "message": "AltGenie",
+    "description": "Side panel header brand wordmark."
+  },
+  "agnPanelFooterBrand": {
+    "message": "Loonud zovo.one",
+    "description": "Side panel footer brand link text."
+  },
+  "agnPanelStateLoading": {
+    "message": "Laadimine...",
+    "description": "Side panel loading-state label before bootstrap completes."
+  },
+  "agnPanelStateChecking": {
+    "message": "Seadmes oleva tehisintellekti kontrollimine sinu seadmes...",
+    "description": "Side panel PENDING / AVAILABILITY_CHECK state label."
+  },
+  "agnPanelStatePreparing": {
+    "message": "Loomiseks valmistumine...",
+    "description": "Side panel MODEL_READY state label."
+  },
+  "agnPanelStateGenerating": {
+    "message": "Alt-teksti loomine...",
+    "description": "Side panel GENERATING state label."
+  },
+  "agnPanelStateIdleTitle": {
+    "message": "Ühtegi pilti pole valitud",
+    "description": "Side panel IDLE state title."
+  },
+  "agnPanelStateIdleBody": {
+    "message": "Tee veebilehel pildil paremklõps ja vali 'Loo alt-tekst (AltGenie)'.",
+    "description": "Side panel IDLE state body."
+  },
+  "agnPanelStateIdlePrivate": {
+    "message": "Kõik töötab seadmes Chrome'i sisseehitatud tehisintellekti kaudu. Ilma sisselogimiseta, ilma üleslaadimiseta, ilma pilveta.",
+    "description": "Side panel IDLE state privacy reminder."
+  },
+  "agnPanelAuditCount": {
+    "message": "Sellel lehel puudub alt-tekst ($1)",
+    "description": "Side panel audit-list card heading. $1 is the number of missing images.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "agnPanelAuditHidden": {
+    "message": "(peidetud)",
+    "description": "Inline marker for off-screen images in the audit list."
+  },
+  "agnPanelAuditGenerate": {
+    "message": "Loo",
+    "description": "Side panel audit-list row button."
+  },
+  "agnPanelDownloadTitle": {
+    "message": "Laadi alla seadmes olev mudel",
+    "description": "Side panel MODEL_DOWNLOADABLE state title."
+  },
+  "agnPanelDownloadBody": {
+    "message": "AltGenie kasutab Chrome'i sisseehitatud tehisintellekti (Gemini Nano). Esimesel korral tuleb alla laadida mudel (umbes 1,5 GB). Pärast allalaadimist toimub kogu loomine sinu seadmes.",
+    "description": "Side panel MODEL_DOWNLOADABLE state body."
+  },
+  "agnPanelDownloadButton": {
+    "message": "Laadi mudel alla",
+    "description": "Side panel MODEL_DOWNLOADABLE state primary button."
+  },
+  "agnPanelDownloadFootnote": {
+    "message": "Nõuab lauaarvutis Chrome 127+ ja umbes 1,5 GB vaba kettaruumi.",
+    "description": "Side panel MODEL_DOWNLOADABLE state footnote."
+  },
+  "agnPanelDownloadingTitle": {
+    "message": "Mudeli allalaadimine...",
+    "description": "Side panel MODEL_DOWNLOADING state title."
+  },
+  "agnPanelDownloadingStatus": {
+    "message": "$1% — sinu seade laadib alla Gemini Nano. Võid selle paneeli avatuna hoida.",
+    "description": "Side panel MODEL_DOWNLOADING state status line. $1 is the integer percentage.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "42"
+      }
+    }
+  },
+  "agnPanelUnavailableTitle": {
+    "message": "Seadmes olev tehisintellekt pole saadaval",
+    "description": "Side panel UNAVAILABLE state title."
+  },
+  "agnPanelUnavailableBody": {
+    "message": "AltGenie vajab Chrome'i sisseehitatud tehisintellekti (Prompt API), mis nõuab:"
+  },
+  "agnPanelUnavailableBullet1": {
+    "message": "Lauaarvutis Chrome 127 või uuem"
+  },
+  "agnPanelUnavailableBullet2": {
+    "message": "Uuem riistvara (mudel on umbes 1,5 GB)"
+  },
+  "agnPanelUnavailableBullet3": {
+    "message": "Prompt API lubatud aadressil chrome://flags"
+  },
+  "agnPanelUnavailableLink": {
+    "message": "Ava chrome://flags/#prompt-api-for-gemini-nano",
+    "description": "Side panel UNAVAILABLE state link to the chrome://flags anchor."
+  },
+  "agnPanelUnavailableFootnote": {
+    "message": "AltGenie ei laadi kunagi sinu pilte üles. Kui seadmes olev tehisintellekt pole saadaval, puudub serveripoolne varulahendus."
+  },
+  "agnPanelErrorCors": {
+    "message": "Ilma CORS-ita ei saa ristpäritolu pilti lugeda. Sait ei ole ristpäritolu lugemisega nõustunud.",
+    "description": "Side panel ERROR state message when image fetch is blocked by CORS."
+  },
+  "agnPanelErrorGeneric": {
+    "message": "Midagi läks valesti.",
+    "description": "Side panel ERROR state fallback message."
+  },
+  "agnPanelErrorImageUrl": {
+    "message": "Pildi URL: $1",
+    "description": "Side panel ERROR state image-URL line. $1 is the URL.",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://example.com/photo.png"
+      }
+    }
+  },
+  "agnPanelErrorCopyUrl": {
+    "message": "Kopeeri pildi URL",
+    "description": "Side panel ERROR state button (CORS-only)."
+  },
+  "agnPanelErrorRetry": {
+    "message": "Proovi uuesti",
+    "description": "Side panel ERROR state retry button."
+  },
+  "agnPanelErrorDismiss": {
+    "message": "Loobu",
+    "description": "Side panel ERROR state dismiss button."
+  },
+  "agnPanelResultPreviewAlt": {
+    "message": "Pilt, millel tegid paremklõpsu",
+    "description": "Alt text for the result-view preview thumbnail."
+  },
+  "agnPanelResultLabel": {
+    "message": "Loodud alt-tekst (redigeeri vajadusel):",
+    "description": "Side panel RESULT state textarea label."
+  },
+  "agnPanelResultCharcount": {
+    "message": "$1 / 125",
+    "description": "Side panel RESULT state character counter. $1 is the current character count.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "87"
+      }
+    }
+  },
+  "agnPanelResultOverbudget": {
+    "message": " (üle limiidi)",
+    "description": "Side panel RESULT state over-budget marker appended to the char count."
+  },
+  "agnPanelResultCopy": {
+    "message": "Kopeeri lõikelauale",
+    "description": "Side panel RESULT state copy button."
+  },
+  "agnPanelResultWrite": {
+    "message": "Kirjuta pilti",
+    "description": "Side panel RESULT state write-to-alt button."
+  },
+  "agnPanelResultRegenerate": {
+    "message": "Loo uuesti",
+    "description": "Side panel RESULT state regenerate button."
+  },
+  "agnPanelResultWriteStatus": {
+    "message": "Kirjutamist prooviti. Kui pilt on kaitstud lehel, kopeeriti tekst selle asemel sinu lõikelauale.",
+    "description": "Side panel RESULT state status line after a write attempt."
+  },
+  "agnActionCopy": {
+    "message": "Kopeeri",
+    "description": "Generic 'Copy' action label."
+  },
+  "agnActionRegenerate": {
+    "message": "Loo uuesti",
+    "description": "Generic 'Regenerate' action label."
+  },
+  "agnActionWrite": {
+    "message": "Kirjuta",
+    "description": "Generic 'Write' action label."
+  },
+  "agnActionSave": {
+    "message": "Salvesta",
+    "description": "Generic 'Save' action label."
+  },
+  "agnActionCancel": {
+    "message": "Tühista",
+    "description": "Generic 'Cancel' action label."
+  },
+  "agnActionRetry": {
+    "message": "Proovi uuesti",
+    "description": "Generic 'Retry' action label."
+  },
+  "agnActionOpen": {
+    "message": "Ava",
+    "description": "Generic 'Open' action label."
+  },
+  "agnActionClose": {
+    "message": "Sulge",
+    "description": "Generic 'Close' action label."
+  },
+  "agnActionNext": {
+    "message": "Edasi",
+    "description": "Generic 'Next' action label."
+  },
+  "agnActionBack": {
+    "message": "Tagasi",
+    "description": "Generic 'Back' action label."
+  },
+  "agnActionFinish": {
+    "message": "Lõpeta",
+    "description": "Generic 'Finish' action label."
+  }
+}

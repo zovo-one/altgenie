@@ -1,0 +1,839 @@
+{
+  "extName": {
+    "message": "AltGenie — générateur de texte alternatif d'images, WCAG et local",
+    "description": "Extension name shown in chrome://extensions and the Chrome Web Store listing title."
+  },
+  "extDesc": {
+    "message": "Faites un clic droit sur n'importe quelle image pour un texte alternatif conforme aux WCAG. Privé, sans connexion, sans clé API, sans cloud. Utilise l'IA intégrée de Chrome.",
+    "description": "Extension description shown in chrome://extensions and the Chrome Web Store listing short summary (≤132 chars)."
+  },
+  "actionTitle": {
+    "message": "AltGenie",
+    "description": "Tooltip for the toolbar action icon."
+  },
+  "permContextMenusJustification": {
+    "message": "Enregistre le menu 'Générer un texte alternatif' du clic droit sur les images. Le clic de l'utilisateur est le geste explicite qui autorise le traitement d'une seule image.",
+    "description": "CWS reviewer justification for the contextMenus permission."
+  },
+  "permActiveTabJustification": {
+    "message": "Accordée sur geste de l'utilisateur (clic droit ou clic sur le badge), autorise l'audit de la page. Ne nécessite pas host_permissions.",
+    "description": "CWS reviewer justification for the activeTab permission."
+  },
+  "permScriptingJustification": {
+    "message": "Active executeScript dynamique pour la passe d'audit et pour écrire le texte alternatif généré. Aucun script de contenu statique.",
+    "description": "CWS reviewer justification for the scripting permission."
+  },
+  "permSidePanelJustification": {
+    "message": "Ouvre le panneau latéral où s'exécute le LanguageModel sur l'appareil. L'API Prompt n'est pas disponible dans le service worker.",
+    "description": "CWS reviewer justification for the sidePanel permission."
+  },
+  "permStorageJustification": {
+    "message": "Conserve les préférences de l'utilisateur (bascule d'audit, bascule d'enregistrement de l'historique, modèle de prompt). Aucun octet d'image ni texte généré n'est stocké par défaut.",
+    "description": "CWS reviewer justification for the storage permission."
+  },
+  "agnPopupTitle": {
+    "message": "AltGenie",
+    "description": "Brand wordmark shown in the popup header and used as the popup document title."
+  },
+  "agnPopupBuiltBy": {
+    "message": "Créé par zovo.one",
+    "description": "Small link in the popup header pointing to the publisher homepage."
+  },
+  "agnPopupHintAriaLabel": {
+    "message": "Comment utiliser AltGenie",
+    "description": "Accessible label for the popup hint section."
+  },
+  "agnPopupHintBody": {
+    "message": "Faites un clic droit sur n'importe quelle image de n'importe quelle page et choisissez 'Générer un texte alternatif (AltGenie)'. Tout s'exécute sur votre appareil.",
+    "description": "Short reminder shown in the popup body that describes the single user gesture."
+  },
+  "agnPopupSettingsAriaLabel": {
+    "message": "Paramètres d'AltGenie",
+    "description": "Accessible label for the popup settings list."
+  },
+  "agnPopupAutoAuditTitle": {
+    "message": "Auditer automatiquement cette page",
+    "description": "Popup toggle label: enables the page audit on the active tab."
+  },
+  "agnPopupAutoAuditSub": {
+    "message": "Ajoute au badge un décompte des images sans texte alternatif. Aucun contenu de la page ne quitte votre appareil.",
+    "description": "Popup toggle subtext explaining what auto-audit does."
+  },
+  "agnPopupShowBadgeTitle": {
+    "message": "Afficher le badge",
+    "description": "Popup toggle label: shows or hides the toolbar badge count."
+  },
+  "agnPopupShowBadgeSub": {
+    "message": "Décompte passif des images sans texte alternatif dans l'onglet actuel.",
+    "description": "Popup toggle subtext explaining the badge."
+  },
+  "agnPopupActionsAriaLabel": {
+    "message": "Actions d'AltGenie",
+    "description": "Accessible label for the popup action buttons."
+  },
+  "agnPopupOpenSidePanel": {
+    "message": "Ouvrir le panneau latéral",
+    "description": "Popup button: opens the Chrome side panel where generation runs."
+  },
+  "agnPopupOpening": {
+    "message": "Ouverture...",
+    "description": "Popup button busy state while the side panel is opening."
+  },
+  "agnPopupOpenOptions": {
+    "message": "Ouvrir les paramètres",
+    "description": "Popup button: opens the full options page."
+  },
+  "agnPopupUpgradeEyebrow": {
+    "message": "Zovo Pro",
+    "description": "Eyebrow label on the popup upgrade CTA (free-tier only)."
+  },
+  "agnPopupUpgradeTitle": {
+    "message": "Débloquez les modèles de prompt et l'historique",
+    "description": "Title on the popup upgrade CTA (free-tier only)."
+  },
+  "agnPopupFooterBrand": {
+    "message": "zovo.one",
+    "description": "Footer brand link in the popup."
+  },
+  "agnPopupFooterPrivacy": {
+    "message": "Confidentialité",
+    "description": "Footer privacy-policy link in the popup."
+  },
+  "agnPopupFooterDisclaimer": {
+    "message": "Non affilié à Google ni à Chrome. AltGenie utilise l'IA intégrée de Chrome ; vos images restent sur votre appareil.",
+    "description": "Footer disclaimer in the popup clarifying the independence from Google."
+  },
+  "agnPopupSrPro": {
+    "message": "Licence Pro active.",
+    "description": "Screen-reader live region: Pro tier active."
+  },
+  "agnPopupSrFree": {
+    "message": "Version gratuite.",
+    "description": "Screen-reader live region: Free tier active."
+  },
+  "agnPopupNoTab": {
+    "message": "Aucun onglet actif trouvé. Ouvrez une page et réessayez.",
+    "description": "Popup error when the side panel cannot be opened because no active tab is available."
+  },
+  "agnPopupSidePanelError": {
+    "message": "Impossible d'ouvrir le panneau latéral. Réessayez ou ouvrez-le depuis chrome://extensions.",
+    "description": "Popup error when chrome.sidePanel.open fails."
+  },
+  "agnOptionsNavAriaLabel": {
+    "message": "Navigation des paramètres d'AltGenie",
+    "description": "Accessible label for the options sidebar navigation."
+  },
+  "agnOptionsSidebarFooter": {
+    "message": "Créé par zovo.one",
+    "description": "Footer link in the options sidebar."
+  },
+  "agnOptionsNav_general": {
+    "message": "Général",
+    "description": "Sidebar nav label for the General section."
+  },
+  "agnOptionsNav_auto_audit": {
+    "message": "Audit automatique",
+    "description": "Sidebar nav label for the Auto-audit section."
+  },
+  "agnOptionsNav_license": {
+    "message": "Licence Pro",
+    "description": "Sidebar nav label for the Pro License section."
+  },
+  "agnOptionsNav_data": {
+    "message": "Données",
+    "description": "Sidebar nav label for the Data section."
+  },
+  "agnOptionsNav_about": {
+    "message": "À propos",
+    "description": "Sidebar nav label for the About section."
+  },
+  "agnOptionsEyebrowGeneral": {
+    "message": "Général",
+    "description": "Eyebrow label for the General section."
+  },
+  "agnOptionsTitleGeneral": {
+    "message": "Comment AltGenie apparaît",
+    "description": "Title for the General section."
+  },
+  "agnOptionsSubGeneral": {
+    "message": "Choisissez si le décompte du badge est visible et si les pages sont auditées automatiquement.",
+    "description": "Subtitle for the General section."
+  },
+  "agnOptionsShowBadgeTitle": {
+    "message": "Afficher le décompte du badge",
+    "description": "Options toggle: show or hide the toolbar badge."
+  },
+  "agnOptionsShowBadgeSub": {
+    "message": "Décompte passif des images sans texte alternatif dans l'onglet actuel.",
+    "description": "Options toggle subtext for the badge."
+  },
+  "agnOptionsAutoAuditTitle": {
+    "message": "Auditer les pages lors de la visite",
+    "description": "Options toggle: enables automatic audit on page load."
+  },
+  "agnOptionsAutoAuditSub": {
+    "message": "Ajoute au badge un décompte des images sans texte alternatif dans l'onglet actif. Aucun contenu de la page ne quitte votre appareil.",
+    "description": "Options toggle subtext for auto-audit."
+  },
+  "agnOptionsPromptTemplateLabel": {
+    "message": "Modèle de prompt",
+    "description": "Options label for the prompt-template dropdown."
+  },
+  "agnOptionsPromptTemplateDefault": {
+    "message": "Par défaut (conforme aux WCAG)",
+    "description": "Options dropdown option: the default prompt template."
+  },
+  "agnOptionsPromptTemplateEcommerce": {
+    "message": "E-commerce (angle produit)",
+    "description": "Options dropdown option: e-commerce prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateNews": {
+    "message": "Éditorial (actualités et articles)",
+    "description": "Options dropdown option: editorial prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateTechnical": {
+    "message": "Technique (graphiques et schémas)",
+    "description": "Options dropdown option: technical prompt template (Pro)."
+  },
+  "agnOptionsPromptTemplateLockedHint": {
+    "message": "Les modèles Pro se débloquent avec une licence Zovo Pro.",
+    "description": "Options dropdown hint for locked Pro templates."
+  },
+  "agnOptionsThemeLabel": {
+    "message": "Thème",
+    "description": "Options label for the theme segmented control."
+  },
+  "agnOptionsThemeSystem": {
+    "message": "Système",
+    "description": "Options theme choice: follow the OS setting."
+  },
+  "agnOptionsThemeLight": {
+    "message": "Clair",
+    "description": "Options theme choice: force light."
+  },
+  "agnOptionsThemeDark": {
+    "message": "Sombre",
+    "description": "Options theme choice: force dark."
+  },
+  "agnOptionsThemeAriaLabel": {
+    "message": "Préférence de thème",
+    "description": "Accessible radiogroup label for the theme segmented control."
+  },
+  "agnOptionsEyebrowAutoAudit": {
+    "message": "Audit automatique",
+    "description": "Eyebrow label for the Auto-audit section."
+  },
+  "agnOptionsTitleAutoAudit": {
+    "message": "Auditer les pages pour détecter les textes alternatifs manquants",
+    "description": "Title for the Auto-audit section."
+  },
+  "agnOptionsAutoAuditExplainer": {
+    "message": "L'audit lit les éléments image de la page pour compter combien sont dépourvus de texte alternatif. L'audit s'exécute sur l'appareil via un scripting dynamique ; aucun contenu de la page n'est envoyé où que ce soit.",
+    "description": "Long-form explainer under the Auto-audit section title."
+  },
+  "agnOptionsSaveHistoryTitle": {
+    "message": "Enregistrer l'historique de génération en local",
+    "description": "Options toggle: store past generated alt texts in chrome.storage.local."
+  },
+  "agnOptionsSaveHistorySub": {
+    "message": "Désactivé par défaut. Une fois activé, le texte généré est stocké uniquement sur cet appareil. Vous pouvez le supprimer à tout moment depuis la section Données.",
+    "description": "Options toggle subtext for save-history."
+  },
+  "agnOptionsAutoAuditNote": {
+    "message": "L'audit automatique n'envoie jamais le contenu de la page à un serveur. Les décomptes restent sur cet appareil.",
+    "description": "Informational note under the Auto-audit section."
+  },
+  "agnOptionsEyebrowLicense": {
+    "message": "Licence",
+    "description": "Eyebrow label for the Pro License section."
+  },
+  "agnOptionsTitleLicense": {
+    "message": "Activer ou retirer une clé Zovo Pro",
+    "description": "Title for the Pro License section."
+  },
+  "agnOptionsSubLicense": {
+    "message": "Une licence Pro débloque les modèles de prompt, l'historique local et l'export. Un paiement ou un abonnement ; active Pro dans cette extension pour toujours.",
+    "description": "Subtitle for the Pro License section."
+  },
+  "agnOptionsLicenseActivePrefix": {
+    "message": "Pro actif.",
+    "description": "Prefix shown when a Pro license is active."
+  },
+  "agnOptionsLicenseActiveValidThrough": {
+    "message": "Valable jusqu'au $1.",
+    "description": "License status line showing the expiry date. $1 is a localized date string.",
+    "placeholders": {
+      "date": {
+        "content": "$1",
+        "example": "December 31, 2026"
+      }
+    }
+  },
+  "agnOptionsLicenseActiveLifetime": {
+    "message": "Licence à vie.",
+    "description": "License status line for a lifetime license."
+  },
+  "agnOptionsLicenseDeactivate": {
+    "message": "Désactiver",
+    "description": "Button: deactivate the current license."
+  },
+  "agnOptionsLicenseDeactivated": {
+    "message": "Licence désactivée. Retour à la version gratuite.",
+    "description": "Status message after the user deactivates a license."
+  },
+  "agnOptionsLicenseKeyLabel": {
+    "message": "Clé de licence",
+    "description": "Accessible label for the license-key input."
+  },
+  "agnOptionsLicensePlaceholder": {
+    "message": "ZOVO-XXXX-XXXX-XXXX-XXXX",
+    "description": "Placeholder text for the license-key input."
+  },
+  "agnOptionsLicenseActivate": {
+    "message": "Activer",
+    "description": "Button: activate the entered license key."
+  },
+  "agnOptionsLicenseVerifying": {
+    "message": "Vérification...",
+    "description": "Button busy state while the license key is being verified."
+  },
+  "agnOptionsLicenseEmpty": {
+    "message": "Saisissez d'abord une clé de licence.",
+    "description": "Error shown when activating with an empty input."
+  },
+  "agnOptionsLicenseActivated": {
+    "message": "Licence activée. Pro débloqué.",
+    "description": "Success message after activation."
+  },
+  "agnOptionsLicenseFailed": {
+    "message": "Cette clé n'a pas pu être vérifiée. Vérifiez la clé et réessayez.",
+    "description": "Error shown when the license server rejects the key."
+  },
+  "agnOptionsLicenseError": {
+    "message": "La vérification a échoué. Réessayez dans un instant.",
+    "description": "Error shown when the license verify endpoint is unreachable."
+  },
+  "agnOptionsLicenseBuy": {
+    "message": "Voir les offres Pro",
+    "description": "Link to the pricing page."
+  },
+  "agnOptionsLicenseRefund": {
+    "message": "Garantie de remboursement de 14 jours. Si Pro n'en vaut pas la peine, nous vous remboursons, sans poser de questions.",
+    "description": "Refund promise under the Pro License section."
+  },
+  "agnOptionsEyebrowData": {
+    "message": "Données",
+    "description": "Eyebrow label for the Data section."
+  },
+  "agnOptionsTitleData": {
+    "message": "Vos données restent sur cet appareil",
+    "description": "Title for the Data section."
+  },
+  "agnOptionsSubData": {
+    "message": "Exportez ou supprimez tout ce qu'AltGenie a stocké sur cet appareil. Sans cloud, sans synchronisation.",
+    "description": "Subtitle for the Data section."
+  },
+  "agnOptionsDataExport": {
+    "message": "Exporter mes données",
+    "description": "Button: export stored preferences and any saved history to a JSON file."
+  },
+  "agnOptionsDataDelete": {
+    "message": "Supprimer toutes les données",
+    "description": "Button: delete everything AltGenie has stored on this device."
+  },
+  "agnOptionsPrivacyExportOk": {
+    "message": "$1 clé(s) exportée(s) vers vos téléchargements.",
+    "description": "Success message after exporting data. $1 is the number of storage keys written.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "agnOptionsPrivacyExportErr": {
+    "message": "L'export a échoué. Veuillez réessayer.",
+    "description": "Error shown when the export download fails."
+  },
+  "agnOptionsPrivacyDeleteConfirm": {
+    "message": "Supprimer toutes les données d'AltGenie de cet appareil ? Cette action est irréversible.",
+    "description": "window.confirm prompt before deleting all data."
+  },
+  "agnOptionsPrivacyDeleteOk": {
+    "message": "Toutes les données d'AltGenie ont été effacées de cet appareil.",
+    "description": "Success message after deleting all data."
+  },
+  "agnOptionsPrivacyDeleteErr": {
+    "message": "La suppression a échoué. Veuillez réessayer.",
+    "description": "Error shown when the delete operation fails."
+  },
+  "agnOptionsEyebrowAbout": {
+    "message": "À propos",
+    "description": "Eyebrow label for the About section."
+  },
+  "agnOptionsTitleAbout": {
+    "message": "À propos d'AltGenie",
+    "description": "Title for the About section."
+  },
+  "agnOptionsAboutVersion": {
+    "message": "Version",
+    "description": "Label preceding the version number in the About section."
+  },
+  "agnOptionsAboutBuiltBy": {
+    "message": "Créé par",
+    "description": "Label preceding the publisher link in the About section."
+  },
+  "agnOptionsAboutPrivacy": {
+    "message": "Politique de confidentialité",
+    "description": "Link to the privacy policy in the About section."
+  },
+  "agnOptionsAboutSource": {
+    "message": "Code source",
+    "description": "Link to the public source repository in the About section."
+  },
+  "agnOptionsAboutDisclaimer": {
+    "message": "AltGenie est un outil indépendant de Zovo. Non affilié à Google ni à Chrome. AltGenie utilise l'IA intégrée de Chrome (Gemini Nano) qui s'exécute sur votre appareil ; vos images ne sont jamais téléversées.",
+    "description": "Independence and privacy disclaimer in the About section."
+  },
+  "agnOptionsFooterBuiltBy": {
+    "message": "Créé par zovo.one",
+    "description": "Footer link in the options page."
+  },
+  "agnOptionsProLockLabel": {
+    "message": "Fonction Pro, verrouillée",
+    "description": "Accessible label for the Pro badge."
+  },
+  "agnOptionsProBadge": {
+    "message": "Pro",
+    "description": "Pro badge text."
+  },
+  "agnOptionsSrPro": {
+    "message": "Licence Pro active.",
+    "description": "Screen-reader live region for the options page: Pro active."
+  },
+  "agnOptionsSrFree": {
+    "message": "Version gratuite.",
+    "description": "Screen-reader live region for the options page: Free tier."
+  },
+  "agnOnbEyebrow": {
+    "message": "AltGenie",
+    "description": "Brand eyebrow shown at the top of every onboarding page."
+  },
+  "agnOnbPage1Heading": {
+    "message": "Le texte alternatif, rédigé par votre navigateur",
+    "description": "Onboarding page 1 main heading."
+  },
+  "agnOnbPage1Sub": {
+    "message": "Faites un clic droit sur n'importe quelle image et AltGenie rédige une courte description conforme aux WCAG grâce à l'IA intégrée de Chrome. Sans connexion, sans téléversement, sans cloud."
+  },
+  "agnOnbPage1Bullet1": {
+    "message": "Sur l'appareil. Vos images ne quittent jamais le navigateur."
+  },
+  "agnOnbPage1Bullet2": {
+    "message": "Conforme aux WCAG. Des descriptions courtes, précises et honnêtes."
+  },
+  "agnOnbPage1Bullet3": {
+    "message": "Sans connexion. Sans clé API. Aucun abonnement requis pour commencer."
+  },
+  "agnOnbPage1Button": {
+    "message": "Voir comment ça marche",
+    "description": "Primary CTA on onboarding page 1."
+  },
+  "agnOnbPage2Heading": {
+    "message": "Un texte alternatif en trois clics",
+    "description": "Onboarding page 2 main heading."
+  },
+  "agnOnbPage2Sub": {
+    "message": "De n'importe quelle image sur n'importe quelle page à une description modifiable que vous pouvez coller partout."
+  },
+  "agnOnbPage2Step1Title": {
+    "message": "Faites un clic droit sur l'image"
+  },
+  "agnOnbPage2Step1Body": {
+    "message": "Choisissez 'Générer un texte alternatif (AltGenie)' dans le menu contextuel. Le panneau latéral s'ouvre."
+  },
+  "agnOnbPage2Step2Title": {
+    "message": "L'IA de Chrome rédige un brouillon"
+  },
+  "agnOnbPage2Step2Body": {
+    "message": "Gemini Nano s'exécute sur votre appareil et rédige une courte description. Sans téléversement, sans serveur."
+  },
+  "agnOnbPage2Step3Title": {
+    "message": "Modifiez, copiez ou réécrivez-le"
+  },
+  "agnOnbPage2Step3Body": {
+    "message": "Ajustez le texte, copiez-le dans le presse-papiers ou écrivez-le directement dans l'attribut alt de l'image."
+  },
+  "agnOnbPage2TryNow": {
+    "message": "Essayez sur une image d'exemple",
+    "description": "Secondary CTA on onboarding page 2."
+  },
+  "agnOnbPage2Next": {
+    "message": "Continuer",
+    "description": "Primary CTA on onboarding page 2."
+  },
+  "agnOnbPage3Heading": {
+    "message": "Personnalisez-le",
+    "description": "Onboarding page 3 main heading."
+  },
+  "agnOnbPage3Sub": {
+    "message": "Deux réglages rapides couvrent la plupart des flux de travail. Modifiez-les à tout moment depuis le popup ou la page d'options."
+  },
+  "agnOnbPage3AutoAuditLabel": {
+    "message": "Auditer automatiquement les pages"
+  },
+  "agnOnbPage3AutoAuditValue": {
+    "message": "Décompte sur le badge des images sans texte alternatif"
+  },
+  "agnOnbPage3ProTemplateLabel": {
+    "message": "Modèles de prompt"
+  },
+  "agnOnbPage3ProTemplateValue": {
+    "message": "Pro : e-commerce, éditorial, technique"
+  },
+  "agnOnbContinue": {
+    "message": "Continuer",
+    "description": "Primary CTA used on multiple onboarding pages."
+  },
+  "agnOnbPage4Heading": {
+    "message": "Bonjour, je suis Michael",
+    "description": "Onboarding page 4 main heading (founder card)."
+  },
+  "agnOnbPage4Sub": {
+    "message": "J'ai créé AltGenie parce que rédiger le texte alternatif à la main est la première chose qu'on laisse tomber quand les délais se resserrent. Il s'exécute sur votre appareil, ne voit jamais vos images et ne téléverse jamais rien."
+  },
+  "agnOnbPage4SubMuted": {
+    "message": "Une seule personne, qui construit en public sur"
+  },
+  "agnOnbPage5Heading": {
+    "message": "La version gratuite fonctionne pour toujours. Pro s'adapte à un vrai flux de travail.",
+    "description": "Onboarding page 5 main heading (pricing)."
+  },
+  "agnOnbPage5Sub": {
+    "message": "La version gratuite couvre la génération quotidienne de texte alternatif. Pro s'adresse aux éditeurs, aux marketeurs et aux audits d'accessibilité."
+  },
+  "agnOnbPage5FreeBadge": {
+    "message": "Gratuit"
+  },
+  "agnOnbPage5FreePrice": {
+    "message": "Gratuit"
+  },
+  "agnOnbPage5FreeBullet1": {
+    "message": "Génération illimitée d'images uniques"
+  },
+  "agnOnbPage5FreeBullet2": {
+    "message": "Audit automatique avec décompte sur le badge"
+  },
+  "agnOnbPage5FreeBullet3": {
+    "message": "Modèle de prompt par défaut conforme aux WCAG"
+  },
+  "agnOnbPage5ProBadge": {
+    "message": "Pro"
+  },
+  "agnOnbPage5ProPrice": {
+    "message": "$$4,99/mois ou $$99 à vie"
+  },
+  "agnOnbPage5ProBullet1": {
+    "message": "Modèles de prompt e-commerce, éditorial et technique"
+  },
+  "agnOnbPage5ProBullet2": {
+    "message": "Historique de génération local avec recherche"
+  },
+  "agnOnbPage5ProBullet3": {
+    "message": "Exporter l'historique en CSV et JSON"
+  },
+  "agnOnbPage5ProBullet4": {
+    "message": "'Tout écrire' en masse sur les pages auditées automatiquement"
+  },
+  "agnOnbPage5ProCta": {
+    "message": "Voir les offres Pro"
+  },
+  "agnOnbPage5FreeCta": {
+    "message": "Rester en version gratuite"
+  },
+  "agnOnbPage5Refund": {
+    "message": "Garantie de remboursement de 14 jours. Si Pro n'en vaut pas la peine, nous vous remboursons, sans poser de questions."
+  },
+  "agnOnbPage6Heading": {
+    "message": "Vous êtes prêt",
+    "description": "Onboarding page 6 main heading (sign-off)."
+  },
+  "agnOnbPage6Sub": {
+    "message": "Faites un clic droit sur n'importe quelle image et choisissez 'Générer un texte alternatif (AltGenie)'. Le premier brouillon est à un clic."
+  },
+  "agnOnbPage6Button": {
+    "message": "Commencer à utiliser AltGenie",
+    "description": "Primary CTA on onboarding page 6."
+  },
+  "agnOnbSkip": {
+    "message": "Ignorer la configuration",
+    "description": "Skip link in the onboarding footer."
+  },
+  "agnOnbBack": {
+    "message": "Retour",
+    "description": "Back button in the onboarding footer."
+  },
+  "agnOnbNext": {
+    "message": "Suivant",
+    "description": "Next button in the onboarding footer."
+  },
+  "agnOnbDone": {
+    "message": "Terminé",
+    "description": "Done button in the onboarding footer (final page)."
+  },
+  "agnOnbStepAriaLabel": {
+    "message": "Étapes d'intégration",
+    "description": "Accessible label for the onboarding step indicator."
+  },
+  "agnOnbStepPositionAriaLabel": {
+    "message": "Étape $1",
+    "description": "Accessible label for an individual step dot. $1 is the 1-based page index.",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "agnOnbProgressAriaLabel": {
+    "message": "Progression de l'intégration",
+    "description": "Accessible label for the progress indicator."
+  },
+  "agnOnbPageOf": {
+    "message": "$1 sur $2",
+    "description": "Page indicator text in the onboarding footer. $1 is current page, $2 is total pages.",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "2"
+      },
+      "total": {
+        "content": "$2",
+        "example": "6"
+      }
+    }
+  },
+  "agnOnbFooterBrand": {
+    "message": "Créé par zovo.one",
+    "description": "Brand link in the onboarding footer."
+  },
+  "agnPanelHeaderTitle": {
+    "message": "AltGenie",
+    "description": "Side panel header brand wordmark."
+  },
+  "agnPanelFooterBrand": {
+    "message": "Créé par zovo.one",
+    "description": "Side panel footer brand link text."
+  },
+  "agnPanelStateLoading": {
+    "message": "Chargement...",
+    "description": "Side panel loading-state label before bootstrap completes."
+  },
+  "agnPanelStateChecking": {
+    "message": "Vérification de l'IA sur l'appareil...",
+    "description": "Side panel PENDING / AVAILABILITY_CHECK state label."
+  },
+  "agnPanelStatePreparing": {
+    "message": "Préparation de la génération...",
+    "description": "Side panel MODEL_READY state label."
+  },
+  "agnPanelStateGenerating": {
+    "message": "Génération du texte alternatif...",
+    "description": "Side panel GENERATING state label."
+  },
+  "agnPanelStateIdleTitle": {
+    "message": "Aucune image sélectionnée",
+    "description": "Side panel IDLE state title."
+  },
+  "agnPanelStateIdleBody": {
+    "message": "Faites un clic droit sur n'importe quelle image d'une page web et choisissez 'Générer un texte alternatif (AltGenie)'.",
+    "description": "Side panel IDLE state body."
+  },
+  "agnPanelStateIdlePrivate": {
+    "message": "Tout s'exécute sur l'appareil via l'IA intégrée de Chrome. Sans connexion, sans téléversement, sans cloud.",
+    "description": "Side panel IDLE state privacy reminder."
+  },
+  "agnPanelAuditCount": {
+    "message": "Texte alternatif manquant sur cette page ($1)",
+    "description": "Side panel audit-list card heading. $1 is the number of missing images.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "agnPanelAuditHidden": {
+    "message": "(masqué)",
+    "description": "Inline marker for off-screen images in the audit list."
+  },
+  "agnPanelAuditGenerate": {
+    "message": "Générer",
+    "description": "Side panel audit-list row button."
+  },
+  "agnPanelDownloadTitle": {
+    "message": "Télécharger le modèle sur l'appareil",
+    "description": "Side panel MODEL_DOWNLOADABLE state title."
+  },
+  "agnPanelDownloadBody": {
+    "message": "AltGenie utilise l'IA intégrée de Chrome (Gemini Nano). Il doit télécharger un modèle (environ 1,5 Go) la première fois. Une fois téléchargé, toute la génération se fait sur votre appareil.",
+    "description": "Side panel MODEL_DOWNLOADABLE state body."
+  },
+  "agnPanelDownloadButton": {
+    "message": "Télécharger le modèle",
+    "description": "Side panel MODEL_DOWNLOADABLE state primary button."
+  },
+  "agnPanelDownloadFootnote": {
+    "message": "Nécessite Chrome 127+ sur ordinateur et environ 1,5 Go d'espace disque libre.",
+    "description": "Side panel MODEL_DOWNLOADABLE state footnote."
+  },
+  "agnPanelDownloadingTitle": {
+    "message": "Téléchargement du modèle...",
+    "description": "Side panel MODEL_DOWNLOADING state title."
+  },
+  "agnPanelDownloadingStatus": {
+    "message": "$1% — votre appareil télécharge Gemini Nano. Vous pouvez laisser ce panneau ouvert.",
+    "description": "Side panel MODEL_DOWNLOADING state status line. $1 is the integer percentage.",
+    "placeholders": {
+      "percent": {
+        "content": "$1",
+        "example": "42"
+      }
+    }
+  },
+  "agnPanelUnavailableTitle": {
+    "message": "L'IA sur l'appareil n'est pas disponible",
+    "description": "Side panel UNAVAILABLE state title."
+  },
+  "agnPanelUnavailableBody": {
+    "message": "AltGenie a besoin de l'IA intégrée de Chrome (API Prompt), qui nécessite :"
+  },
+  "agnPanelUnavailableBullet1": {
+    "message": "Chrome 127 ou plus récent sur ordinateur"
+  },
+  "agnPanelUnavailableBullet2": {
+    "message": "Du matériel récent (le modèle fait environ 1,5 Go)"
+  },
+  "agnPanelUnavailableBullet3": {
+    "message": "L'API Prompt activée dans chrome://flags"
+  },
+  "agnPanelUnavailableLink": {
+    "message": "Ouvrir chrome://flags/#prompt-api-for-gemini-nano",
+    "description": "Side panel UNAVAILABLE state link to the chrome://flags anchor."
+  },
+  "agnPanelUnavailableFootnote": {
+    "message": "AltGenie ne téléverse jamais vos images. Il n'y a pas de solution de repli côté serveur quand l'IA sur l'appareil est indisponible."
+  },
+  "agnPanelErrorCors": {
+    "message": "Impossible de lire une image cross-origin sans CORS. Le site n'a pas autorisé les lectures cross-origin.",
+    "description": "Side panel ERROR state message when image fetch is blocked by CORS."
+  },
+  "agnPanelErrorGeneric": {
+    "message": "Une erreur s'est produite.",
+    "description": "Side panel ERROR state fallback message."
+  },
+  "agnPanelErrorImageUrl": {
+    "message": "URL de l'image : $1",
+    "description": "Side panel ERROR state image-URL line. $1 is the URL.",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://example.com/photo.png"
+      }
+    }
+  },
+  "agnPanelErrorCopyUrl": {
+    "message": "Copier l'URL de l'image",
+    "description": "Side panel ERROR state button (CORS-only)."
+  },
+  "agnPanelErrorRetry": {
+    "message": "Réessayer",
+    "description": "Side panel ERROR state retry button."
+  },
+  "agnPanelErrorDismiss": {
+    "message": "Ignorer",
+    "description": "Side panel ERROR state dismiss button."
+  },
+  "agnPanelResultPreviewAlt": {
+    "message": "L'image sur laquelle vous avez fait un clic droit",
+    "description": "Alt text for the result-view preview thumbnail."
+  },
+  "agnPanelResultLabel": {
+    "message": "Texte alternatif généré (modifiez-le au besoin) :",
+    "description": "Side panel RESULT state textarea label."
+  },
+  "agnPanelResultCharcount": {
+    "message": "$1 / 125",
+    "description": "Side panel RESULT state character counter. $1 is the current character count.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "87"
+      }
+    }
+  },
+  "agnPanelResultOverbudget": {
+    "message": " (au-delà de la limite)",
+    "description": "Side panel RESULT state over-budget marker appended to the char count."
+  },
+  "agnPanelResultCopy": {
+    "message": "Copier dans le presse-papiers",
+    "description": "Side panel RESULT state copy button."
+  },
+  "agnPanelResultWrite": {
+    "message": "Écrire dans l'image",
+    "description": "Side panel RESULT state write-to-alt button."
+  },
+  "agnPanelResultRegenerate": {
+    "message": "Régénérer",
+    "description": "Side panel RESULT state regenerate button."
+  },
+  "agnPanelResultWriteStatus": {
+    "message": "Tentative d'écriture effectuée. Si l'image se trouve sur une page protégée, le texte a été copié dans votre presse-papiers à la place.",
+    "description": "Side panel RESULT state status line after a write attempt."
+  },
+  "agnActionCopy": {
+    "message": "Copier",
+    "description": "Generic 'Copy' action label."
+  },
+  "agnActionRegenerate": {
+    "message": "Régénérer",
+    "description": "Generic 'Regenerate' action label."
+  },
+  "agnActionWrite": {
+    "message": "Écrire",
+    "description": "Generic 'Write' action label."
+  },
+  "agnActionSave": {
+    "message": "Enregistrer",
+    "description": "Generic 'Save' action label."
+  },
+  "agnActionCancel": {
+    "message": "Annuler",
+    "description": "Generic 'Cancel' action label."
+  },
+  "agnActionRetry": {
+    "message": "Réessayer",
+    "description": "Generic 'Retry' action label."
+  },
+  "agnActionOpen": {
+    "message": "Ouvrir",
+    "description": "Generic 'Open' action label."
+  },
+  "agnActionClose": {
+    "message": "Fermer",
+    "description": "Generic 'Close' action label."
+  },
+  "agnActionNext": {
+    "message": "Suivant",
+    "description": "Generic 'Next' action label."
+  },
+  "agnActionBack": {
+    "message": "Retour",
+    "description": "Generic 'Back' action label."
+  },
+  "agnActionFinish": {
+    "message": "Terminer",
+    "description": "Generic 'Finish' action label."
+  }
+}
